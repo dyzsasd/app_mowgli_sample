@@ -1,0 +1,5118 @@
+openapi: 3.0.0
+info:
+  title: Mowgli SmartCache API
+  version: v1
+servers:
+  - url: http://mowgli-api.winglet.io
+    description: production server
+security:
+  - ApiKeyAuth: []
+paths:
+  /smartcache/v1/best_deal:
+    post:
+      tags:
+        - SmartCache
+      operationId: best_deal
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BestDealRequest'
+        required: true
+      responses:
+        "200":
+          description: List of best deal offer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BestDealResponse'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "401":
+          description: Authentification Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "408":
+          description: Request Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Server Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-openapi-router-controller: swagger_server.controllers.smart_cache_controller
+  /smartcache/v1/calendar:
+    post:
+      tags:
+        - SmartCache
+      operationId: calendar
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalendarRequest'
+        required: true
+      responses:
+        "200":
+          description: Price calendar
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalendarResponse'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "401":
+          description: Authentification Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "408":
+          description: Request Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Server Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-openapi-router-controller: swagger_server.controllers.smart_cache_controller
+  /smartcache/v1/home_page:
+    post:
+      tags:
+        - SmartCache
+      operationId: home_page
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HomePageRequest'
+        required: true
+      responses:
+        "200":
+          description: HomePage information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HomePageResponse'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "401":
+          description: Authentification Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "408":
+          description: Request Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Server Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-openapi-router-controller: swagger_server.controllers.smart_cache_controller
+  /smartcache/v1/offer_detail/{offer_id}:
+    get:
+      tags:
+        - SmartCache
+      operationId: offer_detail
+      parameters:
+        - name: offer_id
+          in: path
+          description: Offer ID
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: locale
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            $ref: '#/components/schemas/Locale'
+        - name: with_reco
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            enum:
+              - "true"
+              - "false"
+      responses:
+        "200":
+          description: Offer detail information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OfferDetailResponse'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "401":
+          description: Authentification Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Cannot find Offer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "408":
+          description: Request Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Server Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-openapi-router-controller: swagger_server.controllers.smart_cache_controller
+  /subscription/v1/device/token:
+    put:
+      tags:
+        - Device
+      operationId: token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body'
+        required: true
+      responses:
+        "200":
+          description: Add token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error_2'
+        "401":
+          description: Authentification Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error_2'
+        "408":
+          description: Request Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error_2'
+        "500":
+          description: Server Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error_2'
+      x-openapi-router-controller: swagger_server.controllers.device_controller
+  /subscription/v1/subscription/:
+    get:
+      tags:
+        - Subscription
+      operationId: list_subscriptions
+      parameters:
+        - name: device_id
+          in: query
+          description: Device ID
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: List all subscriptions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_1'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error_2'
+        "401":
+          description: Authentification Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error_2'
+        "408":
+          description: Request Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error_2'
+        "500":
+          description: Server Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error_2'
+      x-openapi-router-controller: swagger_server.controllers.subscription_controller
+    post:
+      tags:
+        - Subscription
+      operationId: create_subscription
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Subscription'
+        required: true
+      responses:
+        "200":
+          description: Create Subscription
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_2'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error_2'
+        "401":
+          description: Authentification Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error_2'
+        "408":
+          description: Request Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error_2'
+        "500":
+          description: Server Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error_2'
+      x-openapi-router-controller: swagger_server.controllers.subscription_controller
+  /subscription/v1/subscription/{id}:
+    get:
+      tags:
+        - Subscription
+      operationId: get_subscription
+      parameters:
+        - name: id
+          in: path
+          description: Subscirption ID
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: device_id
+          in: query
+          description: Device ID
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Retrieve subscription
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error_2'
+        "401":
+          description: Authentification Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error_2'
+        "408":
+          description: Request Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error_2'
+        "500":
+          description: Server Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error_2'
+      x-openapi-router-controller: swagger_server.controllers.subscription_controller
+  /autocompletion/v1/completion:
+    get:
+      tags:
+        - autocompletion
+      operationId: get_subscription
+      parameters:
+        - name: lang
+          in: query
+          description: ISO 639 culture code
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: val
+          in: query
+          description: searching text
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Retrieve subscription
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutocompletionResponse'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error_2'
+        "401":
+          description: Authentification Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error_2'
+        "408":
+          description: Request Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error_2'
+        "500":
+          description: Server Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error_2'
+      x-openapi-router-controller: swagger_server.controllers.autocompletion_controller
+components:
+  schemas:
+    BestDealRequest:
+      title: BestDealRequest
+      required:
+        - destination
+        - origin
+        - outbound_date
+        - type
+      type: object
+      properties:
+        origin:
+          $ref: '#/components/schemas/RequestOrigin'
+        destination:
+          $ref: '#/components/schemas/RequestDestination'
+        outbound_date:
+          $ref: '#/components/schemas/HopDate'
+        outbound_time:
+          $ref: '#/components/schemas/HopTime'
+        inbound_date:
+          $ref: '#/components/schemas/HopDate'
+        inbound_time:
+          $ref: '#/components/schemas/HopTime'
+        type:
+          $ref: '#/components/schemas/JourneyType'
+        journey_days:
+          $ref: '#/components/schemas/JourneyDays'
+        max_stopovers:
+          type: integer
+          format: int64
+        hop_duration:
+          $ref: '#/components/schemas/HopDuration'
+        checked_baggage:
+          type: integer
+          format: int64
+        cabin:
+          $ref: '#/components/schemas/CabinType'
+        budget:
+          type: number
+          format: float
+        currency:
+          $ref: '#/components/schemas/Currency'
+        locale:
+          $ref: '#/components/schemas/Locale'
+        avatar_width:
+          type: integer
+        continuation_token:
+          type: string
+        size:
+          type: integer
+          format: int64
+          default: 20
+        order_by:
+          $ref: '#/components/schemas/BestDealRequestOrderMetric'
+        one_by_destination:
+          type: boolean
+          default: false
+      additionalProperties: false
+      example:
+        one_by_destination: false
+        avatar_width: 3
+        inbound_date: null
+        inbound_time: null
+        origin:
+          code: code
+          type: AIRPORT
+          code_type:
+            - IATA
+            - IATA
+        destination:
+          codes:
+            - codes
+            - codes
+          type: AIRPORT
+          code_type:
+            - null
+            - null
+        cabin: ECONOMY
+        journey_days:
+          flexible_journey_days:
+            min: 6
+            max: 0
+          journey_days: 1
+        outbound_time:
+          time: time
+          type: DEPARTURE
+          flexible_time:
+            min: min
+            max: max
+        type: ROUNDTRIP
+        locale: fr_FR
+        outbound_date:
+          date: date
+          flexible_date:
+            min: min
+            max: max
+            type: OPEN
+            day_of_week:
+              - MONDAY
+              - MONDAY
+          type: DEPARTURE
+        checked_baggage: 7
+        continuation_token: continuation_token
+        size: 2
+        hop_duration:
+          min: 2
+          max: 5
+        max_stopovers: 5
+        order_by: POPULARITY
+        currency: EURO
+        budget: 9.301444
+    BestDealRequestOrderMetric:
+      title: BestDealRequestOrderMetric
+      type: string
+      default: POPULARITY
+      enum:
+        - POPULARITY
+        - PRICE
+        - FRESHNESS
+    BestDealResponse:
+      title: BestDealResponse
+      type: object
+      properties:
+        offers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Offer'
+        continuation_token:
+          type: string
+      additionalProperties: false
+      example:
+        offers:
+          - service_bundles:
+              - traveler_ids:
+                  - traveler_ids
+                  - traveler_ids
+                id: id
+                services:
+                  - marketing_name: marketing_name
+                    name: name
+                    description: description
+                    attributes:
+                      key: attributes
+                    id: id
+                    type: CABINCLASS
+                  - marketing_name: marketing_name
+                    name: name
+                    description: description
+                    attributes:
+                      key: attributes
+                    id: id
+                    type: CABINCLASS
+                transport_service_id: transport_service_id
+              - traveler_ids:
+                  - traveler_ids
+                  - traveler_ids
+                id: id
+                services:
+                  - marketing_name: marketing_name
+                    name: name
+                    description: description
+                    attributes:
+                      key: attributes
+                    id: id
+                    type: CABINCLASS
+                  - marketing_name: marketing_name
+                    name: name
+                    description: description
+                    attributes:
+                      key: attributes
+                    id: id
+                    type: CABINCLASS
+                transport_service_id: transport_service_id
+            viewed_at: viewed_at
+            total_amount:
+              currency: EURO
+              value: 9.301444
+            mowgli_tips:
+              is_average_price:
+                description: description
+                title: title
+                type: SUPERDEAL
+              is_lowest_price:
+                description: description
+                title: title
+                type: LOWESTPRICE
+            hops:
+              - duration: 5
+                origin_city: null
+                stopover_duration: 5
+                arrival_time: arrival_time
+                transport_services:
+                  - equipment_name: equipment_name
+                    stopover_duration: 7
+                    arrival_time: arrival_time
+                    departure_date: departure_date
+                    origin: null
+                    destination:
+                      code: code
+                      coordinate: null
+                      name: name
+                      id: id
+                      type: AIRPORT
+                      code_type: null
+                    equipment: equipment
+                    operating_designator: operating_designator
+                    marketing_designator: marketing_designator
+                    operating_carrier: null
+                    type: FLIGHT
+                    marketing_carrier:
+                      code: code
+                      name: name
+                      avatar: avatar
+                    duration: 2
+                    id: id
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                  - equipment_name: equipment_name
+                    stopover_duration: 7
+                    arrival_time: arrival_time
+                    departure_date: departure_date
+                    origin: null
+                    destination:
+                      code: code
+                      coordinate: null
+                      name: name
+                      id: id
+                      type: AIRPORT
+                      code_type: null
+                    equipment: equipment
+                    operating_designator: operating_designator
+                    marketing_designator: marketing_designator
+                    operating_carrier: null
+                    type: FLIGHT
+                    marketing_carrier:
+                      code: code
+                      name: name
+                      avatar: avatar
+                    duration: 2
+                    id: id
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                departure_date: departure_date
+                id: id
+                type: OUTBOUND
+                arrival_date: arrival_date
+                departure_time: departure_time
+                destination_city:
+                  code: code
+                  coordinate:
+                    altitude: 0.8008282
+                    latitude: 6.0274563
+                    longitude: 1.4658129
+                  country_subdivision_code: country_subdivision_code
+                  name: name
+                  id: id
+                  avatar: avatar
+                  code_type: IATA
+              - duration: 5
+                origin_city: null
+                stopover_duration: 5
+                arrival_time: arrival_time
+                transport_services:
+                  - equipment_name: equipment_name
+                    stopover_duration: 7
+                    arrival_time: arrival_time
+                    departure_date: departure_date
+                    origin: null
+                    destination:
+                      code: code
+                      coordinate: null
+                      name: name
+                      id: id
+                      type: AIRPORT
+                      code_type: null
+                    equipment: equipment
+                    operating_designator: operating_designator
+                    marketing_designator: marketing_designator
+                    operating_carrier: null
+                    type: FLIGHT
+                    marketing_carrier:
+                      code: code
+                      name: name
+                      avatar: avatar
+                    duration: 2
+                    id: id
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                  - equipment_name: equipment_name
+                    stopover_duration: 7
+                    arrival_time: arrival_time
+                    departure_date: departure_date
+                    origin: null
+                    destination:
+                      code: code
+                      coordinate: null
+                      name: name
+                      id: id
+                      type: AIRPORT
+                      code_type: null
+                    equipment: equipment
+                    operating_designator: operating_designator
+                    marketing_designator: marketing_designator
+                    operating_carrier: null
+                    type: FLIGHT
+                    marketing_carrier:
+                      code: code
+                      name: name
+                      avatar: avatar
+                    duration: 2
+                    id: id
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                departure_date: departure_date
+                id: id
+                type: OUTBOUND
+                arrival_date: arrival_date
+                departure_time: departure_time
+                destination_city:
+                  code: code
+                  coordinate:
+                    altitude: 0.8008282
+                    latitude: 6.0274563
+                    longitude: 1.4658129
+                  country_subdivision_code: country_subdivision_code
+                  name: name
+                  id: id
+                  avatar: avatar
+                  code_type: IATA
+            id: id
+            total_tax: null
+            travelers:
+              - id: id
+                type: ADULT
+                service_bundle_ids:
+                  - service_bundle_ids
+                  - service_bundle_ids
+              - id: id
+                type: ADULT
+                service_bundle_ids:
+                  - service_bundle_ids
+                  - service_bundle_ids
+          - service_bundles:
+              - traveler_ids:
+                  - traveler_ids
+                  - traveler_ids
+                id: id
+                services:
+                  - marketing_name: marketing_name
+                    name: name
+                    description: description
+                    attributes:
+                      key: attributes
+                    id: id
+                    type: CABINCLASS
+                  - marketing_name: marketing_name
+                    name: name
+                    description: description
+                    attributes:
+                      key: attributes
+                    id: id
+                    type: CABINCLASS
+                transport_service_id: transport_service_id
+              - traveler_ids:
+                  - traveler_ids
+                  - traveler_ids
+                id: id
+                services:
+                  - marketing_name: marketing_name
+                    name: name
+                    description: description
+                    attributes:
+                      key: attributes
+                    id: id
+                    type: CABINCLASS
+                  - marketing_name: marketing_name
+                    name: name
+                    description: description
+                    attributes:
+                      key: attributes
+                    id: id
+                    type: CABINCLASS
+                transport_service_id: transport_service_id
+            viewed_at: viewed_at
+            total_amount:
+              currency: EURO
+              value: 9.301444
+            mowgli_tips:
+              is_average_price:
+                description: description
+                title: title
+                type: SUPERDEAL
+              is_lowest_price:
+                description: description
+                title: title
+                type: LOWESTPRICE
+            hops:
+              - duration: 5
+                origin_city: null
+                stopover_duration: 5
+                arrival_time: arrival_time
+                transport_services:
+                  - equipment_name: equipment_name
+                    stopover_duration: 7
+                    arrival_time: arrival_time
+                    departure_date: departure_date
+                    origin: null
+                    destination:
+                      code: code
+                      coordinate: null
+                      name: name
+                      id: id
+                      type: AIRPORT
+                      code_type: null
+                    equipment: equipment
+                    operating_designator: operating_designator
+                    marketing_designator: marketing_designator
+                    operating_carrier: null
+                    type: FLIGHT
+                    marketing_carrier:
+                      code: code
+                      name: name
+                      avatar: avatar
+                    duration: 2
+                    id: id
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                  - equipment_name: equipment_name
+                    stopover_duration: 7
+                    arrival_time: arrival_time
+                    departure_date: departure_date
+                    origin: null
+                    destination:
+                      code: code
+                      coordinate: null
+                      name: name
+                      id: id
+                      type: AIRPORT
+                      code_type: null
+                    equipment: equipment
+                    operating_designator: operating_designator
+                    marketing_designator: marketing_designator
+                    operating_carrier: null
+                    type: FLIGHT
+                    marketing_carrier:
+                      code: code
+                      name: name
+                      avatar: avatar
+                    duration: 2
+                    id: id
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                departure_date: departure_date
+                id: id
+                type: OUTBOUND
+                arrival_date: arrival_date
+                departure_time: departure_time
+                destination_city:
+                  code: code
+                  coordinate:
+                    altitude: 0.8008282
+                    latitude: 6.0274563
+                    longitude: 1.4658129
+                  country_subdivision_code: country_subdivision_code
+                  name: name
+                  id: id
+                  avatar: avatar
+                  code_type: IATA
+              - duration: 5
+                origin_city: null
+                stopover_duration: 5
+                arrival_time: arrival_time
+                transport_services:
+                  - equipment_name: equipment_name
+                    stopover_duration: 7
+                    arrival_time: arrival_time
+                    departure_date: departure_date
+                    origin: null
+                    destination:
+                      code: code
+                      coordinate: null
+                      name: name
+                      id: id
+                      type: AIRPORT
+                      code_type: null
+                    equipment: equipment
+                    operating_designator: operating_designator
+                    marketing_designator: marketing_designator
+                    operating_carrier: null
+                    type: FLIGHT
+                    marketing_carrier:
+                      code: code
+                      name: name
+                      avatar: avatar
+                    duration: 2
+                    id: id
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                  - equipment_name: equipment_name
+                    stopover_duration: 7
+                    arrival_time: arrival_time
+                    departure_date: departure_date
+                    origin: null
+                    destination:
+                      code: code
+                      coordinate: null
+                      name: name
+                      id: id
+                      type: AIRPORT
+                      code_type: null
+                    equipment: equipment
+                    operating_designator: operating_designator
+                    marketing_designator: marketing_designator
+                    operating_carrier: null
+                    type: FLIGHT
+                    marketing_carrier:
+                      code: code
+                      name: name
+                      avatar: avatar
+                    duration: 2
+                    id: id
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                departure_date: departure_date
+                id: id
+                type: OUTBOUND
+                arrival_date: arrival_date
+                departure_time: departure_time
+                destination_city:
+                  code: code
+                  coordinate:
+                    altitude: 0.8008282
+                    latitude: 6.0274563
+                    longitude: 1.4658129
+                  country_subdivision_code: country_subdivision_code
+                  name: name
+                  id: id
+                  avatar: avatar
+                  code_type: IATA
+            id: id
+            total_tax: null
+            travelers:
+              - id: id
+                type: ADULT
+                service_bundle_ids:
+                  - service_bundle_ids
+                  - service_bundle_ids
+              - id: id
+                type: ADULT
+                service_bundle_ids:
+                  - service_bundle_ids
+                  - service_bundle_ids
+        continuation_token: continuation_token
+    Error:
+      title: Error
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+      additionalProperties: false
+    CalendarRequest:
+      title: CalendarRequest
+      required:
+        - destination
+        - origin
+        - type
+      type: object
+      properties:
+        origin:
+          $ref: '#/components/schemas/RequestOrigin'
+        destination:
+          $ref: '#/components/schemas/RequestDestination'
+        type:
+          $ref: '#/components/schemas/JourneyType'
+        journey_days:
+          $ref: '#/components/schemas/JourneyDays'
+        max_stopovers:
+          type: integer
+          format: int64
+        hop_duration:
+          $ref: '#/components/schemas/HopDuration'
+        checked_baggage:
+          type: integer
+          format: int64
+        cabin:
+          $ref: '#/components/schemas/CabinType'
+        currency:
+          $ref: '#/components/schemas/Currency'
+      additionalProperties: false
+    CalendarResponse:
+      title: CalendarResponse
+      type: object
+      properties:
+        calendar_cells:
+          type: array
+          items:
+            $ref: '#/components/schemas/CalendarCell'
+        cats:
+          type: array
+          items:
+            $ref: '#/components/schemas/AmountCat'
+      additionalProperties: false
+      example:
+        cats:
+          - lower: 0.8008282
+            upper: 6.0274563
+            ID: null
+          - lower: 0.8008282
+            upper: 6.0274563
+            ID: null
+        calendar_cells:
+          - amount:
+              currency: EURO
+              value: 9.301444
+            cat: LOWEST
+            inbound_departure_date: inbound_departure_date
+            outbound_departure_date: outbound_departure_date
+            offer_id: offer_id
+          - amount:
+              currency: EURO
+              value: 9.301444
+            cat: LOWEST
+            inbound_departure_date: inbound_departure_date
+            outbound_departure_date: outbound_departure_date
+            offer_id: offer_id
+    HomePageRequest:
+      title: HomePageRequest
+      required:
+        - origin
+      type: object
+      properties:
+        origin:
+          $ref: '#/components/schemas/RequestOrigin'
+        locale:
+          $ref: '#/components/schemas/Locale'
+        avatar_width:
+          type: integer
+      additionalProperties: false
+    HomePageResponse:
+      title: HomePageResponse
+      type: object
+      properties:
+        origin:
+          $ref: '#/components/schemas/City'
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecommendationSection'
+      additionalProperties: false
+      example:
+        origin:
+          code: code
+          coordinate:
+            altitude: 0.8008282
+            latitude: 6.0274563
+            longitude: 1.4658129
+          country_subdivision_code: country_subdivision_code
+          name: name
+          id: id
+          avatar: avatar
+          code_type: IATA
+        sections:
+          - offers:
+              - service_bundles:
+                  - traveler_ids:
+                      - traveler_ids
+                      - traveler_ids
+                    id: id
+                    services:
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                    transport_service_id: transport_service_id
+                  - traveler_ids:
+                      - traveler_ids
+                      - traveler_ids
+                    id: id
+                    services:
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                    transport_service_id: transport_service_id
+                viewed_at: viewed_at
+                total_amount:
+                  currency: EURO
+                  value: 9.301444
+                mowgli_tips:
+                  is_average_price:
+                    description: description
+                    title: title
+                    type: SUPERDEAL
+                  is_lowest_price:
+                    description: description
+                    title: title
+                    type: LOWESTPRICE
+                hops:
+                  - duration: 5
+                    origin_city: null
+                    stopover_duration: 5
+                    arrival_time: arrival_time
+                    transport_services:
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                    departure_date: departure_date
+                    id: id
+                    type: OUTBOUND
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                    destination_city:
+                      code: code
+                      coordinate:
+                        altitude: 0.8008282
+                        latitude: 6.0274563
+                        longitude: 1.4658129
+                      country_subdivision_code: country_subdivision_code
+                      name: name
+                      id: id
+                      avatar: avatar
+                      code_type: IATA
+                  - duration: 5
+                    origin_city: null
+                    stopover_duration: 5
+                    arrival_time: arrival_time
+                    transport_services:
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                    departure_date: departure_date
+                    id: id
+                    type: OUTBOUND
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                    destination_city:
+                      code: code
+                      coordinate:
+                        altitude: 0.8008282
+                        latitude: 6.0274563
+                        longitude: 1.4658129
+                      country_subdivision_code: country_subdivision_code
+                      name: name
+                      id: id
+                      avatar: avatar
+                      code_type: IATA
+                id: id
+                total_tax: null
+                travelers:
+                  - id: id
+                    type: ADULT
+                    service_bundle_ids:
+                      - service_bundle_ids
+                      - service_bundle_ids
+                  - id: id
+                    type: ADULT
+                    service_bundle_ids:
+                      - service_bundle_ids
+                      - service_bundle_ids
+              - service_bundles:
+                  - traveler_ids:
+                      - traveler_ids
+                      - traveler_ids
+                    id: id
+                    services:
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                    transport_service_id: transport_service_id
+                  - traveler_ids:
+                      - traveler_ids
+                      - traveler_ids
+                    id: id
+                    services:
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                    transport_service_id: transport_service_id
+                viewed_at: viewed_at
+                total_amount:
+                  currency: EURO
+                  value: 9.301444
+                mowgli_tips:
+                  is_average_price:
+                    description: description
+                    title: title
+                    type: SUPERDEAL
+                  is_lowest_price:
+                    description: description
+                    title: title
+                    type: LOWESTPRICE
+                hops:
+                  - duration: 5
+                    origin_city: null
+                    stopover_duration: 5
+                    arrival_time: arrival_time
+                    transport_services:
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                    departure_date: departure_date
+                    id: id
+                    type: OUTBOUND
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                    destination_city:
+                      code: code
+                      coordinate:
+                        altitude: 0.8008282
+                        latitude: 6.0274563
+                        longitude: 1.4658129
+                      country_subdivision_code: country_subdivision_code
+                      name: name
+                      id: id
+                      avatar: avatar
+                      code_type: IATA
+                  - duration: 5
+                    origin_city: null
+                    stopover_duration: 5
+                    arrival_time: arrival_time
+                    transport_services:
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                    departure_date: departure_date
+                    id: id
+                    type: OUTBOUND
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                    destination_city:
+                      code: code
+                      coordinate:
+                        altitude: 0.8008282
+                        latitude: 6.0274563
+                        longitude: 1.4658129
+                      country_subdivision_code: country_subdivision_code
+                      name: name
+                      id: id
+                      avatar: avatar
+                      code_type: IATA
+                id: id
+                total_tax: null
+                travelers:
+                  - id: id
+                    type: ADULT
+                    service_bundle_ids:
+                      - service_bundle_ids
+                      - service_bundle_ids
+                  - id: id
+                    type: ADULT
+                    service_bundle_ids:
+                      - service_bundle_ids
+                      - service_bundle_ids
+            request:
+              one_by_destination: false
+              avatar_width: 3
+              inbound_date: null
+              inbound_time: null
+              origin:
+                code: code
+                type: AIRPORT
+                code_type:
+                  - IATA
+                  - IATA
+              destination:
+                codes:
+                  - codes
+                  - codes
+                type: AIRPORT
+                code_type:
+                  - null
+                  - null
+              cabin: ECONOMY
+              journey_days:
+                flexible_journey_days:
+                  min: 6
+                  max: 0
+                journey_days: 1
+              outbound_time:
+                time: time
+                type: DEPARTURE
+                flexible_time:
+                  min: min
+                  max: max
+              type: ROUNDTRIP
+              locale: fr_FR
+              outbound_date:
+                date: date
+                flexible_date:
+                  min: min
+                  max: max
+                  type: OPEN
+                  day_of_week:
+                    - MONDAY
+                    - MONDAY
+                type: DEPARTURE
+              checked_baggage: 7
+              continuation_token: continuation_token
+              size: 2
+              hop_duration:
+                min: 2
+                max: 5
+              max_stopovers: 5
+              order_by: POPULARITY
+              currency: EURO
+              budget: 9.301444
+            name: name
+            type: RECOMMENDATION
+          - offers:
+              - service_bundles:
+                  - traveler_ids:
+                      - traveler_ids
+                      - traveler_ids
+                    id: id
+                    services:
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                    transport_service_id: transport_service_id
+                  - traveler_ids:
+                      - traveler_ids
+                      - traveler_ids
+                    id: id
+                    services:
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                    transport_service_id: transport_service_id
+                viewed_at: viewed_at
+                total_amount:
+                  currency: EURO
+                  value: 9.301444
+                mowgli_tips:
+                  is_average_price:
+                    description: description
+                    title: title
+                    type: SUPERDEAL
+                  is_lowest_price:
+                    description: description
+                    title: title
+                    type: LOWESTPRICE
+                hops:
+                  - duration: 5
+                    origin_city: null
+                    stopover_duration: 5
+                    arrival_time: arrival_time
+                    transport_services:
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                    departure_date: departure_date
+                    id: id
+                    type: OUTBOUND
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                    destination_city:
+                      code: code
+                      coordinate:
+                        altitude: 0.8008282
+                        latitude: 6.0274563
+                        longitude: 1.4658129
+                      country_subdivision_code: country_subdivision_code
+                      name: name
+                      id: id
+                      avatar: avatar
+                      code_type: IATA
+                  - duration: 5
+                    origin_city: null
+                    stopover_duration: 5
+                    arrival_time: arrival_time
+                    transport_services:
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                    departure_date: departure_date
+                    id: id
+                    type: OUTBOUND
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                    destination_city:
+                      code: code
+                      coordinate:
+                        altitude: 0.8008282
+                        latitude: 6.0274563
+                        longitude: 1.4658129
+                      country_subdivision_code: country_subdivision_code
+                      name: name
+                      id: id
+                      avatar: avatar
+                      code_type: IATA
+                id: id
+                total_tax: null
+                travelers:
+                  - id: id
+                    type: ADULT
+                    service_bundle_ids:
+                      - service_bundle_ids
+                      - service_bundle_ids
+                  - id: id
+                    type: ADULT
+                    service_bundle_ids:
+                      - service_bundle_ids
+                      - service_bundle_ids
+              - service_bundles:
+                  - traveler_ids:
+                      - traveler_ids
+                      - traveler_ids
+                    id: id
+                    services:
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                    transport_service_id: transport_service_id
+                  - traveler_ids:
+                      - traveler_ids
+                      - traveler_ids
+                    id: id
+                    services:
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                    transport_service_id: transport_service_id
+                viewed_at: viewed_at
+                total_amount:
+                  currency: EURO
+                  value: 9.301444
+                mowgli_tips:
+                  is_average_price:
+                    description: description
+                    title: title
+                    type: SUPERDEAL
+                  is_lowest_price:
+                    description: description
+                    title: title
+                    type: LOWESTPRICE
+                hops:
+                  - duration: 5
+                    origin_city: null
+                    stopover_duration: 5
+                    arrival_time: arrival_time
+                    transport_services:
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                    departure_date: departure_date
+                    id: id
+                    type: OUTBOUND
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                    destination_city:
+                      code: code
+                      coordinate:
+                        altitude: 0.8008282
+                        latitude: 6.0274563
+                        longitude: 1.4658129
+                      country_subdivision_code: country_subdivision_code
+                      name: name
+                      id: id
+                      avatar: avatar
+                      code_type: IATA
+                  - duration: 5
+                    origin_city: null
+                    stopover_duration: 5
+                    arrival_time: arrival_time
+                    transport_services:
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                    departure_date: departure_date
+                    id: id
+                    type: OUTBOUND
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                    destination_city:
+                      code: code
+                      coordinate:
+                        altitude: 0.8008282
+                        latitude: 6.0274563
+                        longitude: 1.4658129
+                      country_subdivision_code: country_subdivision_code
+                      name: name
+                      id: id
+                      avatar: avatar
+                      code_type: IATA
+                id: id
+                total_tax: null
+                travelers:
+                  - id: id
+                    type: ADULT
+                    service_bundle_ids:
+                      - service_bundle_ids
+                      - service_bundle_ids
+                  - id: id
+                    type: ADULT
+                    service_bundle_ids:
+                      - service_bundle_ids
+                      - service_bundle_ids
+            request:
+              one_by_destination: false
+              avatar_width: 3
+              inbound_date: null
+              inbound_time: null
+              origin:
+                code: code
+                type: AIRPORT
+                code_type:
+                  - IATA
+                  - IATA
+              destination:
+                codes:
+                  - codes
+                  - codes
+                type: AIRPORT
+                code_type:
+                  - null
+                  - null
+              cabin: ECONOMY
+              journey_days:
+                flexible_journey_days:
+                  min: 6
+                  max: 0
+                journey_days: 1
+              outbound_time:
+                time: time
+                type: DEPARTURE
+                flexible_time:
+                  min: min
+                  max: max
+              type: ROUNDTRIP
+              locale: fr_FR
+              outbound_date:
+                date: date
+                flexible_date:
+                  min: min
+                  max: max
+                  type: OPEN
+                  day_of_week:
+                    - MONDAY
+                    - MONDAY
+                type: DEPARTURE
+              checked_baggage: 7
+              continuation_token: continuation_token
+              size: 2
+              hop_duration:
+                min: 2
+                max: 5
+              max_stopovers: 5
+              order_by: POPULARITY
+              currency: EURO
+              budget: 9.301444
+            name: name
+            type: RECOMMENDATION
+    Locale:
+      title: Locale
+      type: string
+      enum:
+        - fr_FR
+        - en_US
+    OfferDetailResponse:
+      title: OfferDetailResponse
+      type: object
+      properties:
+        offer:
+          $ref: '#/components/schemas/Offer'
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecommendationSection'
+      additionalProperties: false
+      example:
+        offer:
+          service_bundles:
+            - traveler_ids:
+                - traveler_ids
+                - traveler_ids
+              id: id
+              services:
+                - marketing_name: marketing_name
+                  name: name
+                  description: description
+                  attributes:
+                    key: attributes
+                  id: id
+                  type: CABINCLASS
+                - marketing_name: marketing_name
+                  name: name
+                  description: description
+                  attributes:
+                    key: attributes
+                  id: id
+                  type: CABINCLASS
+              transport_service_id: transport_service_id
+            - traveler_ids:
+                - traveler_ids
+                - traveler_ids
+              id: id
+              services:
+                - marketing_name: marketing_name
+                  name: name
+                  description: description
+                  attributes:
+                    key: attributes
+                  id: id
+                  type: CABINCLASS
+                - marketing_name: marketing_name
+                  name: name
+                  description: description
+                  attributes:
+                    key: attributes
+                  id: id
+                  type: CABINCLASS
+              transport_service_id: transport_service_id
+          viewed_at: viewed_at
+          total_amount:
+            currency: EURO
+            value: 9.301444
+          mowgli_tips:
+            is_average_price:
+              description: description
+              title: title
+              type: SUPERDEAL
+            is_lowest_price:
+              description: description
+              title: title
+              type: LOWESTPRICE
+          hops:
+            - duration: 5
+              origin_city: null
+              stopover_duration: 5
+              arrival_time: arrival_time
+              transport_services:
+                - equipment_name: equipment_name
+                  stopover_duration: 7
+                  arrival_time: arrival_time
+                  departure_date: departure_date
+                  origin: null
+                  destination:
+                    code: code
+                    coordinate: null
+                    name: name
+                    id: id
+                    type: AIRPORT
+                    code_type: null
+                  equipment: equipment
+                  operating_designator: operating_designator
+                  marketing_designator: marketing_designator
+                  operating_carrier: null
+                  type: FLIGHT
+                  marketing_carrier:
+                    code: code
+                    name: name
+                    avatar: avatar
+                  duration: 2
+                  id: id
+                  arrival_date: arrival_date
+                  departure_time: departure_time
+                - equipment_name: equipment_name
+                  stopover_duration: 7
+                  arrival_time: arrival_time
+                  departure_date: departure_date
+                  origin: null
+                  destination:
+                    code: code
+                    coordinate: null
+                    name: name
+                    id: id
+                    type: AIRPORT
+                    code_type: null
+                  equipment: equipment
+                  operating_designator: operating_designator
+                  marketing_designator: marketing_designator
+                  operating_carrier: null
+                  type: FLIGHT
+                  marketing_carrier:
+                    code: code
+                    name: name
+                    avatar: avatar
+                  duration: 2
+                  id: id
+                  arrival_date: arrival_date
+                  departure_time: departure_time
+              departure_date: departure_date
+              id: id
+              type: OUTBOUND
+              arrival_date: arrival_date
+              departure_time: departure_time
+              destination_city:
+                code: code
+                coordinate:
+                  altitude: 0.8008282
+                  latitude: 6.0274563
+                  longitude: 1.4658129
+                country_subdivision_code: country_subdivision_code
+                name: name
+                id: id
+                avatar: avatar
+                code_type: IATA
+            - duration: 5
+              origin_city: null
+              stopover_duration: 5
+              arrival_time: arrival_time
+              transport_services:
+                - equipment_name: equipment_name
+                  stopover_duration: 7
+                  arrival_time: arrival_time
+                  departure_date: departure_date
+                  origin: null
+                  destination:
+                    code: code
+                    coordinate: null
+                    name: name
+                    id: id
+                    type: AIRPORT
+                    code_type: null
+                  equipment: equipment
+                  operating_designator: operating_designator
+                  marketing_designator: marketing_designator
+                  operating_carrier: null
+                  type: FLIGHT
+                  marketing_carrier:
+                    code: code
+                    name: name
+                    avatar: avatar
+                  duration: 2
+                  id: id
+                  arrival_date: arrival_date
+                  departure_time: departure_time
+                - equipment_name: equipment_name
+                  stopover_duration: 7
+                  arrival_time: arrival_time
+                  departure_date: departure_date
+                  origin: null
+                  destination:
+                    code: code
+                    coordinate: null
+                    name: name
+                    id: id
+                    type: AIRPORT
+                    code_type: null
+                  equipment: equipment
+                  operating_designator: operating_designator
+                  marketing_designator: marketing_designator
+                  operating_carrier: null
+                  type: FLIGHT
+                  marketing_carrier:
+                    code: code
+                    name: name
+                    avatar: avatar
+                  duration: 2
+                  id: id
+                  arrival_date: arrival_date
+                  departure_time: departure_time
+              departure_date: departure_date
+              id: id
+              type: OUTBOUND
+              arrival_date: arrival_date
+              departure_time: departure_time
+              destination_city:
+                code: code
+                coordinate:
+                  altitude: 0.8008282
+                  latitude: 6.0274563
+                  longitude: 1.4658129
+                country_subdivision_code: country_subdivision_code
+                name: name
+                id: id
+                avatar: avatar
+                code_type: IATA
+          id: id
+          total_tax: null
+          travelers:
+            - id: id
+              type: ADULT
+              service_bundle_ids:
+                - service_bundle_ids
+                - service_bundle_ids
+            - id: id
+              type: ADULT
+              service_bundle_ids:
+                - service_bundle_ids
+                - service_bundle_ids
+        sections:
+          - offers:
+              - service_bundles:
+                  - traveler_ids:
+                      - traveler_ids
+                      - traveler_ids
+                    id: id
+                    services:
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                    transport_service_id: transport_service_id
+                  - traveler_ids:
+                      - traveler_ids
+                      - traveler_ids
+                    id: id
+                    services:
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                    transport_service_id: transport_service_id
+                viewed_at: viewed_at
+                total_amount:
+                  currency: EURO
+                  value: 9.301444
+                mowgli_tips:
+                  is_average_price:
+                    description: description
+                    title: title
+                    type: SUPERDEAL
+                  is_lowest_price:
+                    description: description
+                    title: title
+                    type: LOWESTPRICE
+                hops:
+                  - duration: 5
+                    origin_city: null
+                    stopover_duration: 5
+                    arrival_time: arrival_time
+                    transport_services:
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                    departure_date: departure_date
+                    id: id
+                    type: OUTBOUND
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                    destination_city:
+                      code: code
+                      coordinate:
+                        altitude: 0.8008282
+                        latitude: 6.0274563
+                        longitude: 1.4658129
+                      country_subdivision_code: country_subdivision_code
+                      name: name
+                      id: id
+                      avatar: avatar
+                      code_type: IATA
+                  - duration: 5
+                    origin_city: null
+                    stopover_duration: 5
+                    arrival_time: arrival_time
+                    transport_services:
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                    departure_date: departure_date
+                    id: id
+                    type: OUTBOUND
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                    destination_city:
+                      code: code
+                      coordinate:
+                        altitude: 0.8008282
+                        latitude: 6.0274563
+                        longitude: 1.4658129
+                      country_subdivision_code: country_subdivision_code
+                      name: name
+                      id: id
+                      avatar: avatar
+                      code_type: IATA
+                id: id
+                total_tax: null
+                travelers:
+                  - id: id
+                    type: ADULT
+                    service_bundle_ids:
+                      - service_bundle_ids
+                      - service_bundle_ids
+                  - id: id
+                    type: ADULT
+                    service_bundle_ids:
+                      - service_bundle_ids
+                      - service_bundle_ids
+              - service_bundles:
+                  - traveler_ids:
+                      - traveler_ids
+                      - traveler_ids
+                    id: id
+                    services:
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                    transport_service_id: transport_service_id
+                  - traveler_ids:
+                      - traveler_ids
+                      - traveler_ids
+                    id: id
+                    services:
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                    transport_service_id: transport_service_id
+                viewed_at: viewed_at
+                total_amount:
+                  currency: EURO
+                  value: 9.301444
+                mowgli_tips:
+                  is_average_price:
+                    description: description
+                    title: title
+                    type: SUPERDEAL
+                  is_lowest_price:
+                    description: description
+                    title: title
+                    type: LOWESTPRICE
+                hops:
+                  - duration: 5
+                    origin_city: null
+                    stopover_duration: 5
+                    arrival_time: arrival_time
+                    transport_services:
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                    departure_date: departure_date
+                    id: id
+                    type: OUTBOUND
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                    destination_city:
+                      code: code
+                      coordinate:
+                        altitude: 0.8008282
+                        latitude: 6.0274563
+                        longitude: 1.4658129
+                      country_subdivision_code: country_subdivision_code
+                      name: name
+                      id: id
+                      avatar: avatar
+                      code_type: IATA
+                  - duration: 5
+                    origin_city: null
+                    stopover_duration: 5
+                    arrival_time: arrival_time
+                    transport_services:
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                    departure_date: departure_date
+                    id: id
+                    type: OUTBOUND
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                    destination_city:
+                      code: code
+                      coordinate:
+                        altitude: 0.8008282
+                        latitude: 6.0274563
+                        longitude: 1.4658129
+                      country_subdivision_code: country_subdivision_code
+                      name: name
+                      id: id
+                      avatar: avatar
+                      code_type: IATA
+                id: id
+                total_tax: null
+                travelers:
+                  - id: id
+                    type: ADULT
+                    service_bundle_ids:
+                      - service_bundle_ids
+                      - service_bundle_ids
+                  - id: id
+                    type: ADULT
+                    service_bundle_ids:
+                      - service_bundle_ids
+                      - service_bundle_ids
+            request:
+              one_by_destination: false
+              avatar_width: 3
+              inbound_date: null
+              inbound_time: null
+              origin:
+                code: code
+                type: AIRPORT
+                code_type:
+                  - IATA
+                  - IATA
+              destination:
+                codes:
+                  - codes
+                  - codes
+                type: AIRPORT
+                code_type:
+                  - null
+                  - null
+              cabin: ECONOMY
+              journey_days:
+                flexible_journey_days:
+                  min: 6
+                  max: 0
+                journey_days: 1
+              outbound_time:
+                time: time
+                type: DEPARTURE
+                flexible_time:
+                  min: min
+                  max: max
+              type: ROUNDTRIP
+              locale: fr_FR
+              outbound_date:
+                date: date
+                flexible_date:
+                  min: min
+                  max: max
+                  type: OPEN
+                  day_of_week:
+                    - MONDAY
+                    - MONDAY
+                type: DEPARTURE
+              checked_baggage: 7
+              continuation_token: continuation_token
+              size: 2
+              hop_duration:
+                min: 2
+                max: 5
+              max_stopovers: 5
+              order_by: POPULARITY
+              currency: EURO
+              budget: 9.301444
+            name: name
+            type: RECOMMENDATION
+          - offers:
+              - service_bundles:
+                  - traveler_ids:
+                      - traveler_ids
+                      - traveler_ids
+                    id: id
+                    services:
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                    transport_service_id: transport_service_id
+                  - traveler_ids:
+                      - traveler_ids
+                      - traveler_ids
+                    id: id
+                    services:
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                    transport_service_id: transport_service_id
+                viewed_at: viewed_at
+                total_amount:
+                  currency: EURO
+                  value: 9.301444
+                mowgli_tips:
+                  is_average_price:
+                    description: description
+                    title: title
+                    type: SUPERDEAL
+                  is_lowest_price:
+                    description: description
+                    title: title
+                    type: LOWESTPRICE
+                hops:
+                  - duration: 5
+                    origin_city: null
+                    stopover_duration: 5
+                    arrival_time: arrival_time
+                    transport_services:
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                    departure_date: departure_date
+                    id: id
+                    type: OUTBOUND
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                    destination_city:
+                      code: code
+                      coordinate:
+                        altitude: 0.8008282
+                        latitude: 6.0274563
+                        longitude: 1.4658129
+                      country_subdivision_code: country_subdivision_code
+                      name: name
+                      id: id
+                      avatar: avatar
+                      code_type: IATA
+                  - duration: 5
+                    origin_city: null
+                    stopover_duration: 5
+                    arrival_time: arrival_time
+                    transport_services:
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                    departure_date: departure_date
+                    id: id
+                    type: OUTBOUND
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                    destination_city:
+                      code: code
+                      coordinate:
+                        altitude: 0.8008282
+                        latitude: 6.0274563
+                        longitude: 1.4658129
+                      country_subdivision_code: country_subdivision_code
+                      name: name
+                      id: id
+                      avatar: avatar
+                      code_type: IATA
+                id: id
+                total_tax: null
+                travelers:
+                  - id: id
+                    type: ADULT
+                    service_bundle_ids:
+                      - service_bundle_ids
+                      - service_bundle_ids
+                  - id: id
+                    type: ADULT
+                    service_bundle_ids:
+                      - service_bundle_ids
+                      - service_bundle_ids
+              - service_bundles:
+                  - traveler_ids:
+                      - traveler_ids
+                      - traveler_ids
+                    id: id
+                    services:
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                    transport_service_id: transport_service_id
+                  - traveler_ids:
+                      - traveler_ids
+                      - traveler_ids
+                    id: id
+                    services:
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                      - marketing_name: marketing_name
+                        name: name
+                        description: description
+                        attributes:
+                          key: attributes
+                        id: id
+                        type: CABINCLASS
+                    transport_service_id: transport_service_id
+                viewed_at: viewed_at
+                total_amount:
+                  currency: EURO
+                  value: 9.301444
+                mowgli_tips:
+                  is_average_price:
+                    description: description
+                    title: title
+                    type: SUPERDEAL
+                  is_lowest_price:
+                    description: description
+                    title: title
+                    type: LOWESTPRICE
+                hops:
+                  - duration: 5
+                    origin_city: null
+                    stopover_duration: 5
+                    arrival_time: arrival_time
+                    transport_services:
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                    departure_date: departure_date
+                    id: id
+                    type: OUTBOUND
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                    destination_city:
+                      code: code
+                      coordinate:
+                        altitude: 0.8008282
+                        latitude: 6.0274563
+                        longitude: 1.4658129
+                      country_subdivision_code: country_subdivision_code
+                      name: name
+                      id: id
+                      avatar: avatar
+                      code_type: IATA
+                  - duration: 5
+                    origin_city: null
+                    stopover_duration: 5
+                    arrival_time: arrival_time
+                    transport_services:
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                      - equipment_name: equipment_name
+                        stopover_duration: 7
+                        arrival_time: arrival_time
+                        departure_date: departure_date
+                        origin: null
+                        destination:
+                          code: code
+                          coordinate: null
+                          name: name
+                          id: id
+                          type: AIRPORT
+                          code_type: null
+                        equipment: equipment
+                        operating_designator: operating_designator
+                        marketing_designator: marketing_designator
+                        operating_carrier: null
+                        type: FLIGHT
+                        marketing_carrier:
+                          code: code
+                          name: name
+                          avatar: avatar
+                        duration: 2
+                        id: id
+                        arrival_date: arrival_date
+                        departure_time: departure_time
+                    departure_date: departure_date
+                    id: id
+                    type: OUTBOUND
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                    destination_city:
+                      code: code
+                      coordinate:
+                        altitude: 0.8008282
+                        latitude: 6.0274563
+                        longitude: 1.4658129
+                      country_subdivision_code: country_subdivision_code
+                      name: name
+                      id: id
+                      avatar: avatar
+                      code_type: IATA
+                id: id
+                total_tax: null
+                travelers:
+                  - id: id
+                    type: ADULT
+                    service_bundle_ids:
+                      - service_bundle_ids
+                      - service_bundle_ids
+                  - id: id
+                    type: ADULT
+                    service_bundle_ids:
+                      - service_bundle_ids
+                      - service_bundle_ids
+            request:
+              one_by_destination: false
+              avatar_width: 3
+              inbound_date: null
+              inbound_time: null
+              origin:
+                code: code
+                type: AIRPORT
+                code_type:
+                  - IATA
+                  - IATA
+              destination:
+                codes:
+                  - codes
+                  - codes
+                type: AIRPORT
+                code_type:
+                  - null
+                  - null
+              cabin: ECONOMY
+              journey_days:
+                flexible_journey_days:
+                  min: 6
+                  max: 0
+                journey_days: 1
+              outbound_time:
+                time: time
+                type: DEPARTURE
+                flexible_time:
+                  min: min
+                  max: max
+              type: ROUNDTRIP
+              locale: fr_FR
+              outbound_date:
+                date: date
+                flexible_date:
+                  min: min
+                  max: max
+                  type: OPEN
+                  day_of_week:
+                    - MONDAY
+                    - MONDAY
+                type: DEPARTURE
+              checked_baggage: 7
+              continuation_token: continuation_token
+              size: 2
+              hop_duration:
+                min: 2
+                max: 5
+              max_stopovers: 5
+              order_by: POPULARITY
+              currency: EURO
+              budget: 9.301444
+            name: name
+            type: RECOMMENDATION
+    Error_2:
+      title: Error
+      type: object
+      properties:
+        ok:
+          type: string
+        message:
+          type: string
+      additionalProperties: false
+    Subscription:
+      title: Subscription
+      type: object
+      properties:
+        id:
+          type: string
+        created_at:
+          type: integer
+          format: int64
+        last_notified:
+          type: integer
+          format: int64
+        device_id:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/SubscriptionMetadata'
+        best_deal_request:
+          $ref: '#/components/schemas/BestDealRequest'
+      additionalProperties: false
+      example:
+        metadata:
+          last_currency: last_currency
+          last_price: 1.4658129
+        device_id: device_id
+        best_deal_request:
+          one_by_destination: false
+          avatar_width: 3
+          inbound_date: null
+          inbound_time: null
+          origin:
+            code: code
+            type: AIRPORT
+            code_type:
+              - IATA
+              - IATA
+          destination:
+            codes:
+              - codes
+              - codes
+            type: AIRPORT
+            code_type:
+              - null
+              - null
+          cabin: ECONOMY
+          journey_days:
+            flexible_journey_days:
+              min: 6
+              max: 0
+            journey_days: 1
+          outbound_time:
+            time: time
+            type: DEPARTURE
+            flexible_time:
+              min: min
+              max: max
+          type: ROUNDTRIP
+          locale: fr_FR
+          outbound_date:
+            date: date
+            flexible_date:
+              min: min
+              max: max
+              type: OPEN
+              day_of_week:
+                - MONDAY
+                - MONDAY
+            type: DEPARTURE
+          checked_baggage: 7
+          continuation_token: continuation_token
+          size: 2
+          hop_duration:
+            min: 2
+            max: 5
+          max_stopovers: 5
+          order_by: POPULARITY
+          currency: EURO
+          budget: 9.301444
+        created_at: 0
+        id: id
+        last_notified: 6
+    AutocompletionResponse:
+      title: AutocompletionResponse
+      type: object
+      properties:
+        ok:
+          type: bool
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ACResult'
+      additionalProperties: false
+      example:
+        ok: ""
+        results:
+          - type: type
+            items:
+              - country_code: country_code
+                code: code
+                name: name
+                country_name: country_name
+                order: 0
+              - country_code: country_code
+                code: code
+                name: name
+                country_name: country_name
+                order: 0
+          - type: type
+            items:
+              - country_code: country_code
+                code: code
+                name: name
+                country_name: country_name
+                order: 0
+              - country_code: country_code
+                code: code
+                name: name
+                country_name: country_name
+                order: 0
+    ACResult:
+      title: ACResult
+      type: object
+      properties:
+        type:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ACItem'
+      additionalProperties: false
+      example:
+        type: type
+        items:
+          - country_code: country_code
+            code: code
+            name: name
+            country_name: country_name
+            order: 0
+          - country_code: country_code
+            code: code
+            name: name
+            country_name: country_name
+            order: 0
+    ACItem:
+      title: ACResult
+      type: object
+      properties:
+        code:
+          type: string
+        name:
+          type: string
+        country_name:
+          type: string
+        country_code:
+          type: string
+        order:
+          type: integer
+      additionalProperties: false
+      example:
+        country_code: country_code
+        code: code
+        name: name
+        country_name: country_name
+        order: 0
+    RequestOrigin:
+      title: RequestOrigin
+      required:
+        - type
+      type: object
+      properties:
+        code:
+          type: string
+        code_type:
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeType'
+        type:
+          $ref: '#/components/schemas/RequestOriginType'
+      additionalProperties: false
+      example:
+        code: code
+        type: AIRPORT
+        code_type:
+          - IATA
+          - IATA
+    RequestDestination:
+      title: RequestDestination
+      required:
+        - type
+      type: object
+      properties:
+        codes:
+          minItems: 1
+          type: array
+          items:
+            type: string
+        code_type:
+          type: array
+          items:
+            $ref: '#/components/schemas/CodeType'
+        type:
+          $ref: '#/components/schemas/RequestDestinationType'
+      additionalProperties: false
+      example:
+        codes:
+          - codes
+          - codes
+        type: AIRPORT
+        code_type:
+          - null
+          - null
+    HopDate:
+      title: HopDate
+      type: object
+      properties:
+        date:
+          type: string
+        flexible_date:
+          $ref: '#/components/schemas/FlexibleDate'
+        type:
+          $ref: '#/components/schemas/HopDateType'
+      additionalProperties: false
+      example:
+        date: date
+        flexible_date:
+          min: min
+          max: max
+          type: OPEN
+          day_of_week:
+            - MONDAY
+            - MONDAY
+        type: DEPARTURE
+    HopDateType:
+      title: HopDateType
+      type: string
+      enum:
+        - DEPARTURE
+        - ARRIVAL
+    HopTime:
+      title: HopTime
+      type: object
+      properties:
+        flexible_time:
+          $ref: '#/components/schemas/FlexibleTime'
+        time:
+          type: string
+        type:
+          $ref: '#/components/schemas/HopTimeType'
+      additionalProperties: false
+      example:
+        time: time
+        type: DEPARTURE
+        flexible_time:
+          min: min
+          max: max
+    FlexibleTime:
+      title: FlexibleTime
+      type: object
+      properties:
+        max:
+          type: string
+        min:
+          type: string
+      additionalProperties: false
+      example:
+        min: min
+        max: max
+    HopTimeType:
+      title: HopTimeType
+      type: string
+      enum:
+        - DEPARTURE
+        - ARRIVAL
+    JourneyType:
+      title: JourneyType
+      type: string
+      default: ROUNDTRIP
+      enum:
+        - ONEWAY
+        - ROUNDTRIP
+    JourneyDays:
+      title: JourneyDays
+      type: object
+      properties:
+        flexible_journey_days:
+          $ref: '#/components/schemas/FlexibleJourneyDays'
+        journey_days:
+          type: integer
+          format: int64
+      additionalProperties: false
+      example:
+        flexible_journey_days:
+          min: 6
+          max: 0
+        journey_days: 1
+    HopDuration:
+      title: HopDuration
+      type: object
+      properties:
+        max:
+          type: integer
+          format: int64
+        min:
+          type: integer
+          format: int64
+      additionalProperties: false
+      example:
+        min: 2
+        max: 5
+    CabinType:
+      title: CabinType
+      type: string
+      enum:
+        - ECONOMY
+        - PREMIUM
+        - BUSINESS
+        - FIRST
+    Currency:
+      title: Currency
+      type: string
+      default: EURO
+      enum:
+        - EURO
+    Offer:
+      title: Offer
+      type: object
+      properties:
+        hops:
+          type: array
+          items:
+            $ref: '#/components/schemas/Hop'
+        id:
+          type: string
+        service_bundles:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceBundle'
+        total_amount:
+          $ref: '#/components/schemas/Amount'
+        total_tax:
+          $ref: '#/components/schemas/Amount'
+        travelers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Traveler'
+        viewed_at:
+          type: string
+        mowgli_tips:
+          $ref: '#/components/schemas/Tips'
+      additionalProperties: false
+      example:
+        service_bundles:
+          - traveler_ids:
+              - traveler_ids
+              - traveler_ids
+            id: id
+            services:
+              - marketing_name: marketing_name
+                name: name
+                description: description
+                attributes:
+                  key: attributes
+                id: id
+                type: CABINCLASS
+              - marketing_name: marketing_name
+                name: name
+                description: description
+                attributes:
+                  key: attributes
+                id: id
+                type: CABINCLASS
+            transport_service_id: transport_service_id
+          - traveler_ids:
+              - traveler_ids
+              - traveler_ids
+            id: id
+            services:
+              - marketing_name: marketing_name
+                name: name
+                description: description
+                attributes:
+                  key: attributes
+                id: id
+                type: CABINCLASS
+              - marketing_name: marketing_name
+                name: name
+                description: description
+                attributes:
+                  key: attributes
+                id: id
+                type: CABINCLASS
+            transport_service_id: transport_service_id
+        viewed_at: viewed_at
+        total_amount:
+          currency: EURO
+          value: 9.301444
+        mowgli_tips:
+          is_average_price:
+            description: description
+            title: title
+            type: SUPERDEAL
+          is_lowest_price:
+            description: description
+            title: title
+            type: LOWESTPRICE
+        hops:
+          - duration: 5
+            origin_city: null
+            stopover_duration: 5
+            arrival_time: arrival_time
+              transport_services:
+              - equipment_name: equipment_name
+                stopover_duration: 7
+                arrival_time: arrival_time
+                departure_date: departure_date
+                origin: null
+                destination:
+                  code: code
+                  coordinate: null
+                  name: name
+                  id: id
+                  type: AIRPORT
+                  code_type: null
+                equipment: equipment
+                operating_designator: operating_designator
+                marketing_designator: marketing_designator
+                operating_carrier: null
+                type: FLIGHT
+                marketing_carrier:
+                  code: code
+                  name: name
+                  avatar: avatar
+                duration: 2
+                id: id
+                arrival_date: arrival_date
+                departure_time: departure_time
+              - equipment_name: equipment_name
+                stopover_duration: 7
+                arrival_time: arrival_time
+                departure_date: departure_date
+                origin: null
+                destination:
+                  code: code
+                  coordinate: null
+                  name: name
+                  id: id
+                  type: AIRPORT
+                  code_type: null
+                equipment: equipment
+                operating_designator: operating_designator
+                marketing_designator: marketing_designator
+                operating_carrier: null
+                type: FLIGHT
+                marketing_carrier:
+                  code: code
+                  name: name
+                  avatar: avatar
+                duration: 2
+                id: id
+                arrival_date: arrival_date
+                departure_time: departure_time
+            departure_date: departure_date
+            id: id
+            type: OUTBOUND
+            arrival_date: arrival_date
+            departure_time: departure_time
+            destination_city:
+              code: code
+              coordinate:
+                altitude: 0.8008282
+                latitude: 6.0274563
+                longitude: 1.4658129
+              country_subdivision_code: country_subdivision_code
+              name: name
+              id: id
+              avatar: avatar
+              code_type: IATA
+          - duration: 5
+            origin_city: null
+            stopover_duration: 5
+            arrival_time: arrival_time
+            transport_services:
+              - equipment_name: equipment_name
+                stopover_duration: 7
+                arrival_time: arrival_time
+                departure_date: departure_date
+                origin: null
+                destination:
+                  code: code
+                  coordinate: null
+                  name: name
+                  id: id
+                  type: AIRPORT
+                  code_type: null
+                equipment: equipment
+                operating_designator: operating_designator
+                marketing_designator: marketing_designator
+                operating_carrier: null
+                type: FLIGHT
+                marketing_carrier:
+                  code: code
+                  name: name
+                  avatar: avatar
+                duration: 2
+                id: id
+                arrival_date: arrival_date
+                departure_time: departure_time
+              - equipment_name: equipment_name
+                stopover_duration: 7
+                arrival_time: arrival_time
+                departure_date: departure_date
+                origin: null
+                destination:
+                  code: code
+                  coordinate: null
+                  name: name
+                  id: id
+                  type: AIRPORT
+                  code_type: null
+                equipment: equipment
+                operating_designator: operating_designator
+                marketing_designator: marketing_designator
+                operating_carrier: null
+                type: FLIGHT
+                marketing_carrier:
+                  code: code
+                  name: name
+                  avatar: avatar
+                duration: 2
+                id: id
+                arrival_date: arrival_date
+                departure_time: departure_time
+            departure_date: departure_date
+            id: id
+            type: OUTBOUND
+            arrival_date: arrival_date
+            departure_time: departure_time
+            destination_city:
+              code: code
+              coordinate:
+                altitude: 0.8008282
+                latitude: 6.0274563
+                longitude: 1.4658129
+              country_subdivision_code: country_subdivision_code
+              name: name
+              id: id
+              avatar: avatar
+              code_type: IATA
+        id: id
+        total_tax: null
+        travelers:
+          - id: id
+            type: ADULT
+            service_bundle_ids:
+              - service_bundle_ids
+              - service_bundle_ids
+          - id: id
+            type: ADULT
+            service_bundle_ids:
+              - service_bundle_ids
+              - service_bundle_ids
+    CalendarCell:
+      title: CalendarCell
+      type: object
+      properties:
+        amount:
+          $ref: '#/components/schemas/Amount'
+        cat:
+          $ref: '#/components/schemas/AmountCatID'
+        inbound_departure_date:
+          type: string
+        offer_id:
+          type: string
+        outbound_departure_date:
+          type: string
+      additionalProperties: false
+      example:
+        amount:
+          currency: EURO
+          value: 9.301444
+        cat: LOWEST
+        inbound_departure_date: inbound_departure_date
+        outbound_departure_date: outbound_departure_date
+        offer_id: offer_id
+    AmountCatID:
+      title: AmountCatID
+      type: string
+      enum:
+        - LOWEST
+        - MEDIUM
+        - HIGH
+    AmountCat:
+      title: AmountCat
+      required:
+        - ID
+      type: object
+      properties:
+        ID:
+          $ref: '#/components/schemas/AmountCatID'
+        lower:
+          type: number
+          format: float
+        upper:
+          type: number
+          format: float
+      additionalProperties: false
+      description: Amount's category definition
+      example:
+        lower: 0.8008282
+        upper: 6.0274563
+        ID: null
+    City:
+      title: City
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        code:
+          type: string
+        code_type:
+          $ref: '#/components/schemas/CodeType'
+        coordinate:
+          $ref: '#/components/schemas/Coordinate'
+        country_subdivision_code:
+          type: string
+        avatar:
+          type: string
+      additionalProperties: false
+      example:
+        code: code
+        coordinate:
+          altitude: 0.8008282
+          latitude: 6.0274563
+          longitude: 1.4658129
+        country_subdivision_code: country_subdivision_code
+        name: name
+        id: id
+        avatar: avatar
+        code_type: IATA
+    RecommendationSection:
+      title: RecommendationSection
+      type: object
+      properties:
+        name:
+          type: string
+        offers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Offer'
+        request:
+          $ref: '#/components/schemas/BestDealRequest'
+        type:
+          $ref: '#/components/schemas/RecommendationSectionType'
+      additionalProperties: false
+      example:
+        offers:
+          - service_bundles:
+              - traveler_ids:
+                  - traveler_ids
+                  - traveler_ids
+                id: id
+                services:
+                  - marketing_name: marketing_name
+                    name: name
+                    description: description
+                    attributes:
+                      key: attributes
+                    id: id
+                    type: CABINCLASS
+                  - marketing_name: marketing_name
+                    name: name
+                    description: description
+                    attributes:
+                      key: attributes
+                    id: id
+                    type: CABINCLASS
+                transport_service_id: transport_service_id
+              - traveler_ids:
+                  - traveler_ids
+                  - traveler_ids
+                id: id
+                services:
+                  - marketing_name: marketing_name
+                    name: name
+                    description: description
+                    attributes:
+                      key: attributes
+                    id: id
+                    type: CABINCLASS
+                  - marketing_name: marketing_name
+                    name: name
+                    description: description
+                    attributes:
+                      key: attributes
+                    id: id
+                    type: CABINCLASS
+                transport_service_id: transport_service_id
+            viewed_at: viewed_at
+            total_amount:
+              currency: EURO
+              value: 9.301444
+            mowgli_tips:
+              is_average_price:
+                description: description
+                title: title
+                type: SUPERDEAL
+              is_lowest_price:
+                description: description
+                title: title
+                type: LOWESTPRICE
+            hops:
+              - duration: 5
+                origin_city: null
+                stopover_duration: 5
+                arrival_time: arrival_time
+                transport_services:
+                  - equipment_name: equipment_name
+                    stopover_duration: 7
+                    arrival_time: arrival_time
+                    departure_date: departure_date
+                    origin: null
+                    destination:
+                      code: code
+                      coordinate: null
+                      name: name
+                      id: id
+                      type: AIRPORT
+                      code_type: null
+                    equipment: equipment
+                    operating_designator: operating_designator
+                    marketing_designator: marketing_designator
+                    operating_carrier: null
+                    type: FLIGHT
+                    marketing_carrier:
+                      code: code
+                      name: name
+                      avatar: avatar
+                    duration: 2
+                    id: id
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                  - equipment_name: equipment_name
+                    stopover_duration: 7
+                    arrival_time: arrival_time
+                    departure_date: departure_date
+                    origin: null
+                    destination:
+                      code: code
+                      coordinate: null
+                      name: name
+                      id: id
+                      type: AIRPORT
+                      code_type: null
+                    equipment: equipment
+                    operating_designator: operating_designator
+                    marketing_designator: marketing_designator
+                    operating_carrier: null
+                    type: FLIGHT
+                    marketing_carrier:
+                      code: code
+                      name: name
+                      avatar: avatar
+                    duration: 2
+                    id: id
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                departure_date: departure_date
+                id: id
+                type: OUTBOUND
+                arrival_date: arrival_date
+                departure_time: departure_time
+                destination_city:
+                  code: code
+                  coordinate:
+                    altitude: 0.8008282
+                    latitude: 6.0274563
+                    longitude: 1.4658129
+                  country_subdivision_code: country_subdivision_code
+                  name: name
+                  id: id
+                  avatar: avatar
+                  code_type: IATA
+              - duration: 5
+                origin_city: null
+                stopover_duration: 5
+                arrival_time: arrival_time
+                transport_services:
+                  - equipment_name: equipment_name
+                    stopover_duration: 7
+                    arrival_time: arrival_time
+                    departure_date: departure_date
+                    origin: null
+                    destination:
+                      code: code
+                      coordinate: null
+                      name: name
+                      id: id
+                      type: AIRPORT
+                      code_type: null
+                    equipment: equipment
+                    operating_designator: operating_designator
+                    marketing_designator: marketing_designator
+                    operating_carrier: null
+                    type: FLIGHT
+                    marketing_carrier:
+                      code: code
+                      name: name
+                      avatar: avatar
+                    duration: 2
+                    id: id
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                  - equipment_name: equipment_name
+                    stopover_duration: 7
+                    arrival_time: arrival_time
+                    departure_date: departure_date
+                    origin: null
+                    destination:
+                      code: code
+                      coordinate: null
+                      name: name
+                      id: id
+                      type: AIRPORT
+                      code_type: null
+                    equipment: equipment
+                    operating_designator: operating_designator
+                    marketing_designator: marketing_designator
+                    operating_carrier: null
+                    type: FLIGHT
+                    marketing_carrier:
+                      code: code
+                      name: name
+                      avatar: avatar
+                    duration: 2
+                    id: id
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                departure_date: departure_date
+                id: id
+                type: OUTBOUND
+                arrival_date: arrival_date
+                departure_time: departure_time
+                destination_city:
+                  code: code
+                  coordinate:
+                    altitude: 0.8008282
+                    latitude: 6.0274563
+                    longitude: 1.4658129
+                  country_subdivision_code: country_subdivision_code
+                  name: name
+                  id: id
+                  avatar: avatar
+                  code_type: IATA
+            id: id
+            total_tax: null
+            travelers:
+              - id: id
+                type: ADULT
+                service_bundle_ids:
+                  - service_bundle_ids
+                  - service_bundle_ids
+              - id: id
+                type: ADULT
+                service_bundle_ids:
+                  - service_bundle_ids
+                  - service_bundle_ids
+          - service_bundles:
+              - traveler_ids:
+                  - traveler_ids
+                  - traveler_ids
+                id: id
+                services:
+                  - marketing_name: marketing_name
+                    name: name
+                    description: description
+                    attributes:
+                      key: attributes
+                    id: id
+                    type: CABINCLASS
+                  - marketing_name: marketing_name
+                    name: name
+                    description: description
+                    attributes:
+                      key: attributes
+                    id: id
+                    type: CABINCLASS
+                transport_service_id: transport_service_id
+              - traveler_ids:
+                  - traveler_ids
+                  - traveler_ids
+                id: id
+                services:
+                  - marketing_name: marketing_name
+                    name: name
+                    description: description
+                    attributes:
+                      key: attributes
+                    id: id
+                    type: CABINCLASS
+                  - marketing_name: marketing_name
+                    name: name
+                    description: description
+                    attributes:
+                      key: attributes
+                    id: id
+                    type: CABINCLASS
+                transport_service_id: transport_service_id
+            viewed_at: viewed_at
+            total_amount:
+              currency: EURO
+              value: 9.301444
+            mowgli_tips:
+              is_average_price:
+                description: description
+                title: title
+                type: SUPERDEAL
+              is_lowest_price:
+                description: description
+                title: title
+                type: LOWESTPRICE
+            hops:
+              - duration: 5
+                origin_city: null
+                stopover_duration: 5
+                arrival_time: arrival_time
+                transport_services:
+                  - equipment_name: equipment_name
+                    stopover_duration: 7
+                    arrival_time: arrival_time
+                    departure_date: departure_date
+                    origin: null
+                    destination:
+                      code: code
+                      coordinate: null
+                      name: name
+                      id: id
+                      type: AIRPORT
+                      code_type: null
+                    equipment: equipment
+                    operating_designator: operating_designator
+                    marketing_designator: marketing_designator
+                    operating_carrier: null
+                    type: FLIGHT
+                    marketing_carrier:
+                      code: code
+                      name: name
+                      avatar: avatar
+                    duration: 2
+                    id: id
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                  - equipment_name: equipment_name
+                    stopover_duration: 7
+                    arrival_time: arrival_time
+                    departure_date: departure_date
+                    origin: null
+                    destination:
+                      code: code
+                      coordinate: null
+                      name: name
+                      id: id
+                      type: AIRPORT
+                      code_type: null
+                    equipment: equipment
+                    operating_designator: operating_designator
+                    marketing_designator: marketing_designator
+                    operating_carrier: null
+                    type: FLIGHT
+                    marketing_carrier:
+                      code: code
+                      name: name
+                      avatar: avatar
+                    duration: 2
+                    id: id
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                departure_date: departure_date
+                id: id
+                type: OUTBOUND
+                arrival_date: arrival_date
+                departure_time: departure_time
+                destination_city:
+                  code: code
+                  coordinate:
+                    altitude: 0.8008282
+                    latitude: 6.0274563
+                    longitude: 1.4658129
+                  country_subdivision_code: country_subdivision_code
+                  name: name
+                  id: id
+                  avatar: avatar
+                  code_type: IATA
+              - duration: 5
+                origin_city: null
+                stopover_duration: 5
+                arrival_time: arrival_time
+                transport_services:
+                  - equipment_name: equipment_name
+                    stopover_duration: 7
+                    arrival_time: arrival_time
+                    departure_date: departure_date
+                    origin: null
+                    destination:
+                      code: code
+                      coordinate: null
+                      name: name
+                      id: id
+                      type: AIRPORT
+                      code_type: null
+                    equipment: equipment
+                    operating_designator: operating_designator
+                    marketing_designator: marketing_designator
+                    operating_carrier: null
+                    type: FLIGHT
+                    marketing_carrier:
+                      code: code
+                      name: name
+                      avatar: avatar
+                    duration: 2
+                    id: id
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                  - equipment_name: equipment_name
+                    stopover_duration: 7
+                    arrival_time: arrival_time
+                    departure_date: departure_date
+                    origin: null
+                    destination:
+                      code: code
+                      coordinate: null
+                      name: name
+                      id: id
+                      type: AIRPORT
+                      code_type: null
+                    equipment: equipment
+                    operating_designator: operating_designator
+                    marketing_designator: marketing_designator
+                    operating_carrier: null
+                    type: FLIGHT
+                    marketing_carrier:
+                      code: code
+                      name: name
+                      avatar: avatar
+                    duration: 2
+                    id: id
+                    arrival_date: arrival_date
+                    departure_time: departure_time
+                departure_date: departure_date
+                id: id
+                type: OUTBOUND
+                arrival_date: arrival_date
+                departure_time: departure_time
+                destination_city:
+                  code: code
+                  coordinate:
+                    altitude: 0.8008282
+                    latitude: 6.0274563
+                    longitude: 1.4658129
+                  country_subdivision_code: country_subdivision_code
+                  name: name
+                  id: id
+                  avatar: avatar
+                  code_type: IATA
+            id: id
+            total_tax: null
+            travelers:
+              - id: id
+                type: ADULT
+                service_bundle_ids:
+                  - service_bundle_ids
+                  - service_bundle_ids
+              - id: id
+                type: ADULT
+                service_bundle_ids:
+                  - service_bundle_ids
+                  - service_bundle_ids
+        request:
+          one_by_destination: false
+          avatar_width: 3
+          inbound_date: null
+          inbound_time: null
+          origin:
+            code: code
+            type: AIRPORT
+            code_type:
+              - IATA
+              - IATA
+          destination:
+            codes:
+              - codes
+              - codes
+            type: AIRPORT
+            code_type:
+              - null
+              - null
+          cabin: ECONOMY
+          journey_days:
+            flexible_journey_days:
+              min: 6
+              max: 0
+            journey_days: 1
+          outbound_time:
+            time: time
+            type: DEPARTURE
+            flexible_time:
+              min: min
+              max: max
+          type: ROUNDTRIP
+          locale: fr_FR
+          outbound_date:
+            date: date
+            flexible_date:
+              min: min
+              max: max
+              type: OPEN
+              day_of_week:
+                - MONDAY
+                - MONDAY
+            type: DEPARTURE
+          checked_baggage: 7
+          continuation_token: continuation_token
+          size: 2
+          hop_duration:
+            min: 2
+            max: 5
+          max_stopovers: 5
+          order_by: POPULARITY
+          currency: EURO
+          budget: 9.301444
+        name: name
+        type: RECOMMENDATION
+    RecommendationSectionType:
+      title: RecommendationSectionType
+      type: string
+      enum:
+        - RECOMMENDATION
+        - LOWEST_FARE
+    CodeType:
+      title: CodeType
+      type: string
+      enum:
+        - IATA
+        - ISO3316
+        - IPv4
+        - IPv6
+        - MowgliCategory
+        - CustomCategory
+    RequestOriginType:
+      title: RequestLocationType
+      type: string
+      enum:
+        - AIRPORT
+        - CITY
+        - IP
+    RequestDestinationType:
+      title: RequestLocationType
+      type: string
+      enum:
+        - AIRPORT
+        - CITY
+        - COUNTRY
+        - CONTINENT
+        - CATEGORY
+        - OPEN
+    FlexibleDate:
+      title: FlexibleDate
+      required:
+        - type
+      type: object
+      properties:
+        day_of_week:
+          type: array
+          items:
+            $ref: '#/components/schemas/DayOfWeek'
+        max:
+          type: string
+        min:
+          type: string
+        type:
+          $ref: '#/components/schemas/FlexibleDateType'
+      additionalProperties: false
+      example:
+        min: min
+        max: max
+        type: OPEN
+        day_of_week:
+          - MONDAY
+          - MONDAY
+    DayOfWeek:
+      title: DayOfWeek
+      type: string
+      enum:
+        - MONDAY
+        - TUESDAY
+        - WEDNESDAY
+        - THURSDAY
+        - FRIDAY
+        - SATURDAY
+        - SUNDAY
+    FlexibleDateType:
+      title: FlexibleDateType
+      type: string
+      enum:
+        - OPEN
+        - RANGE
+    FlexibleJourneyDays:
+      title: FlexibleJourneyDays
+      type: object
+      properties:
+        max:
+          type: integer
+          format: int64
+        min:
+          type: integer
+          format: int64
+      additionalProperties: false
+      example:
+        min: 6
+        max: 0
+    Hop:
+      title: Hop
+      type: object
+      properties:
+        arrival_date:
+          type: string
+        arrival_time:
+          type: string
+        departure_date:
+          type: string
+        departure_time:
+          type: string
+        destination_city:
+          $ref: '#/components/schemas/City'
+        duration:
+          type: integer
+          format: int64
+        id:
+          type: string
+        origin_city:
+          $ref: '#/components/schemas/City'
+        stopover_duration:
+          type: integer
+          format: int64
+        transport_services:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransportService'
+        type:
+          $ref: '#/components/schemas/HopType'
+      additionalProperties: false
+      example:
+        duration: 5
+        origin_city: null
+        stopover_duration: 5
+        arrival_time: arrival_time
+        transport_services:
+          - equipment_name: equipment_name
+            stopover_duration: 7
+            arrival_time: arrival_time
+            departure_date: departure_date
+            origin: null
+            destination:
+              code: code
+              coordinate: null
+              name: name
+              id: id
+              type: AIRPORT
+              code_type: null
+            equipment: equipment
+            operating_designator: operating_designator
+            marketing_designator: marketing_designator
+            operating_carrier: null
+            type: FLIGHT
+            marketing_carrier:
+              code: code
+              name: name
+              avatar: avatar
+            duration: 2
+            id: id
+            arrival_date: arrival_date
+            departure_time: departure_time
+          - equipment_name: equipment_name
+            stopover_duration: 7
+            arrival_time: arrival_time
+            departure_date: departure_date
+            origin: null
+            destination:
+              code: code
+              coordinate: null
+              name: name
+              id: id
+              type: AIRPORT
+              code_type: null
+            equipment: equipment
+            operating_designator: operating_designator
+            marketing_designator: marketing_designator
+            operating_carrier: null
+            type: FLIGHT
+            marketing_carrier:
+              code: code
+              name: name
+              avatar: avatar
+            duration: 2
+            id: id
+            arrival_date: arrival_date
+            departure_time: departure_time
+        departure_date: departure_date
+        id: id
+        type: OUTBOUND
+        arrival_date: arrival_date
+        departure_time: departure_time
+        destination_city:
+          code: code
+          coordinate:
+            altitude: 0.8008282
+            latitude: 6.0274563
+            longitude: 1.4658129
+          country_subdivision_code: country_subdivision_code
+          name: name
+          id: id
+          avatar: avatar
+          code_type: IATA
+    HopType:
+      title: HopType
+      type: string
+      enum:
+        - OUTBOUND
+        - INBOUND
+    ServiceBundle:
+      title: ServiceBundle
+      type: object
+      properties:
+        id:
+          type: string
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/Service'
+        transport_service_id:
+          type: string
+        traveler_ids:
+          type: array
+          items:
+            type: string
+      additionalProperties: false
+      example:
+        traveler_ids:
+          - traveler_ids
+          - traveler_ids
+        id: id
+        services:
+          - marketing_name: marketing_name
+            name: name
+            description: description
+            attributes:
+              key: attributes
+            id: id
+            type: CABINCLASS
+          - marketing_name: marketing_name
+            name: name
+            description: description
+            attributes:
+              key: attributes
+            id: id
+            type: CABINCLASS
+        transport_service_id: transport_service_id
+    Amount:
+      title: Amount
+      required:
+        - currency
+        - value
+      type: object
+      properties:
+        currency:
+          $ref: '#/components/schemas/Currency'
+        value:
+          type: number
+          format: float
+      additionalProperties: false
+      example:
+        currency: EURO
+        value: 9.301444
+    Traveler:
+      title: Traveler
+      type: object
+      properties:
+        id:
+          type: string
+        service_bundle_ids:
+          type: array
+          items:
+            type: string
+        type:
+          $ref: '#/components/schemas/TravelerType'
+      additionalProperties: false
+      example:
+        id: id
+        type: ADULT
+        service_bundle_ids:
+          - service_bundle_ids
+          - service_bundle_ids
+    Tips:
+      title: MowgliTips
+      type: object
+      properties:
+        is_lowest_price:
+          $ref: '#/components/schemas/LowestPriceSection'
+        is_average_price:
+          $ref: '#/components/schemas/AveragePriceSection'
+      additionalProperties: false
+      example:
+        is_average_price:
+          description: description
+          title: title
+          type: SUPERDEAL
+        is_lowest_price:
+          description: description
+          title: title
+          type: LOWESTPRICE
+    Coordinate:
+      title: Coordinate
+      type: object
+      properties:
+        altitude:
+          type: number
+          format: float
+        latitude:
+          type: number
+          format: float
+        longitude:
+          type: number
+          format: float
+      additionalProperties: false
+      example:
+        altitude: 0.8008282
+        latitude: 6.0274563
+        longitude: 1.4658129
+    TransportService:
+      title: TransportService
+      type: object
+      properties:
+        arrival_date:
+          type: string
+        arrival_time:
+          type: string
+        departure_date:
+          type: string
+        departure_time:
+          type: string
+        destination:
+          $ref: '#/components/schemas/Location'
+        duration:
+          type: integer
+          format: int64
+        equipment:
+          type: string
+        equipment_name:
+          type: string
+        id:
+          type: string
+        marketing_carrier:
+          $ref: '#/components/schemas/Carrier'
+        marketing_designator:
+          type: string
+        operating_carrier:
+          $ref: '#/components/schemas/Carrier'
+        operating_designator:
+          type: string
+        origin:
+          $ref: '#/components/schemas/Location'
+        stopover_duration:
+          type: integer
+          format: int64
+        type:
+          $ref: '#/components/schemas/TransportServiceType'
+      additionalProperties: false
+      example:
+        equipment_name: equipment_name
+        stopover_duration: 7
+        arrival_time: arrival_time
+        departure_date: departure_date
+        origin: null
+        destination:
+          code: code
+          coordinate: null
+          name: name
+          id: id
+          type: AIRPORT
+          code_type: null
+        equipment: equipment
+        operating_designator: operating_designator
+        marketing_designator: marketing_designator
+        operating_carrier: null
+        type: FLIGHT
+        marketing_carrier:
+          code: code
+          name: name
+          avatar: avatar
+        duration: 2
+        id: id
+        arrival_date: arrival_date
+        departure_time: departure_time
+    Service:
+      title: Service
+      type: object
+      properties:
+        attributes:
+          type: object
+          additionalProperties:
+            type: string
+        description:
+          type: string
+        id:
+          type: string
+        marketing_name:
+          type: string
+        name:
+          type: string
+        type:
+          $ref: '#/components/schemas/ServiceType'
+      additionalProperties: false
+      example:
+        marketing_name: marketing_name
+        name: name
+        description: description
+        attributes:
+          key: attributes
+        id: id
+        type: CABINCLASS
+    TravelerType:
+      title: TravelerType
+      type: string
+      enum:
+        - ADULT
+        - CHILD
+        - INFANT
+    Location:
+      title: Location
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          $ref: '#/components/schemas/LocationType'
+        name:
+          type: string
+        code:
+          type: string
+        code_type:
+          $ref: '#/components/schemas/CodeType'
+        coordinate:
+          $ref: '#/components/schemas/Coordinate'
+      additionalProperties: false
+      example:
+        code: code
+        coordinate: null
+        name: name
+        id: id
+        type: AIRPORT
+        code_type: null
+    LocationType:
+      title: LocationType
+      type: string
+      enum:
+        - AIRPORT
+        - TRAINSTATION
+        - FURRY
+        - UNKNOWN
+    Carrier:
+      title: Carrier
+      type: object
+      properties:
+        name:
+          type: string
+        code:
+          type: string
+        avatar:
+          type: string
+      additionalProperties: false
+      example:
+        code: code
+        name: name
+        avatar: avatar
+    TransportServiceType:
+      title: TransportServiceType
+      type: string
+      enum:
+        - FLIGHT
+        - TRAIN
+    ServiceType:
+      title: ServiceType
+      type: string
+      enum:
+        - CABINCLASS
+        - BAGGAGE
+        - OTHER
+    body:
+      type: object
+      properties:
+        device_id:
+          type: string
+        token:
+          type: string
+    inline_response_200:
+      type: object
+      properties:
+        ok:
+          type: string
+      example:
+        ok: ok
+    inline_response_200_1:
+      type: object
+      properties:
+        ok:
+          type: string
+        subscriptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subscription'
+      example:
+        subscriptions:
+          - metadata:
+              last_currency: last_currency
+              last_price: 1.4658129
+            device_id: device_id
+            best_deal_request:
+              one_by_destination: false
+              avatar_width: 3
+              inbound_date: null
+              inbound_time: null
+              origin:
+                code: code
+                type: AIRPORT
+                code_type:
+                  - IATA
+                  - IATA
+              destination:
+                codes:
+                  - codes
+                  - codes
+                type: AIRPORT
+                code_type:
+                  - null
+                  - null
+              cabin: ECONOMY
+              journey_days:
+                flexible_journey_days:
+                  min: 6
+                  max: 0
+                journey_days: 1
+              outbound_time:
+                time: time
+                type: DEPARTURE
+                flexible_time:
+                  min: min
+                  max: max
+              type: ROUNDTRIP
+              locale: fr_FR
+              outbound_date:
+                date: date
+                flexible_date:
+                  min: min
+                  max: max
+                  type: OPEN
+                  day_of_week:
+                    - MONDAY
+                    - MONDAY
+                type: DEPARTURE
+              checked_baggage: 7
+              continuation_token: continuation_token
+              size: 2
+              hop_duration:
+                min: 2
+                max: 5
+              max_stopovers: 5
+              order_by: POPULARITY
+              currency: EURO
+              budget: 9.301444
+            created_at: 0
+            id: id
+            last_notified: 6
+          - metadata:
+              last_currency: last_currency
+              last_price: 1.4658129
+            device_id: device_id
+            best_deal_request:
+              one_by_destination: false
+              avatar_width: 3
+              inbound_date: null
+              inbound_time: null
+              origin:
+                code: code
+                type: AIRPORT
+                code_type:
+                  - IATA
+                  - IATA
+              destination:
+                codes:
+                  - codes
+                  - codes
+                type: AIRPORT
+                code_type:
+                  - null
+                  - null
+              cabin: ECONOMY
+              journey_days:
+                flexible_journey_days:
+                  min: 6
+                  max: 0
+                journey_days: 1
+              outbound_time:
+                time: time
+                type: DEPARTURE
+                flexible_time:
+                  min: min
+                  max: max
+              type: ROUNDTRIP
+              locale: fr_FR
+              outbound_date:
+                date: date
+                flexible_date:
+                  min: min
+                  max: max
+                  type: OPEN
+                  day_of_week:
+                    - MONDAY
+                    - MONDAY
+                type: DEPARTURE
+              checked_baggage: 7
+              continuation_token: continuation_token
+              size: 2
+              hop_duration:
+                min: 2
+                max: 5
+              max_stopovers: 5
+              order_by: POPULARITY
+              currency: EURO
+              budget: 9.301444
+            created_at: 0
+            id: id
+            last_notified: 6
+        ok: ok
+    inline_response_200_2:
+      type: object
+      properties:
+        ok:
+          type: string
+        subscription:
+          $ref: '#/components/schemas/Subscription'
+      example:
+        subscription:
+          metadata:
+            last_currency: last_currency
+            last_price: 1.4658129
+          device_id: device_id
+          best_deal_request:
+            one_by_destination: false
+            avatar_width: 3
+            inbound_date: null
+            inbound_time: null
+            origin:
+              code: code
+              type: AIRPORT
+              code_type:
+                - IATA
+                - IATA
+            destination:
+              codes:
+                - codes
+                - codes
+              type: AIRPORT
+              code_type:
+                - null
+                - null
+            cabin: ECONOMY
+            journey_days:
+              flexible_journey_days:
+                min: 6
+                max: 0
+              journey_days: 1
+            outbound_time:
+              time: time
+              type: DEPARTURE
+              flexible_time:
+                min: min
+                max: max
+            type: ROUNDTRIP
+            locale: fr_FR
+            outbound_date:
+              date: date
+              flexible_date:
+                min: min
+                max: max
+                type: OPEN
+                day_of_week:
+                  - MONDAY
+                  - MONDAY
+              type: DEPARTURE
+            checked_baggage: 7
+            continuation_token: continuation_token
+            size: 2
+            hop_duration:
+              min: 2
+              max: 5
+            max_stopovers: 5
+            order_by: POPULARITY
+            currency: EURO
+            budget: 9.301444
+          created_at: 0
+          id: id
+          last_notified: 6
+        ok: ok
+    SubscriptionMetadata:
+      type: object
+      properties:
+        last_price:
+          type: number
+          format: float
+        last_currency:
+          type: string
+      example:
+        last_currency: last_currency
+        last_price: 1.4658129
+    LowestPriceSection:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+            - LOWESTPRICE
+            - NONLOWESTPRICE
+      example:
+        description: description
+        title: title
+        type: LOWESTPRICE
+    AveragePriceSection:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+            - SUPERDEAL
+            - AVERAGEPRICE
+            - EXPENSIVE
+      example:
+        description: description
+        title: title
+        type: SUPERDEAL
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: apikey
+      in: header
+      x-apikeyInfoFunc: swagger_server.controllers.authorization_controller.check_ApiKeyAuth
+

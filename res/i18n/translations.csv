@@ -1,0 +1,290 @@
+keys,fr
+appBarClose,Fermer
+notificationsDisabledDialogTitle,Notifications désactivées
+notificationsDisabledDialogMessage,"Les notifications sont désactivées pour l'application. Vous ne recevrez aucun bon plan.\n\nSi vous souhaitez tout de même les recevoir, veuillez réactiver les notifications depuis les paramètres. "
+notificationsDisabledDialogPositive,Ouvrir les paramètres
+notificationsDisabledDialogNegative,Ignorer
+genericDialogErrorTitle,Erreur !
+genericDialogPositiveLabel,Ok
+genericButtonFilterDeal,Deal
+genericButtonFilterAverage,Moyen
+genericButtonFilterExpensive,Cher
+genericPriceItem,%value$s €
+genericTimeItem,Vu il y a %duration$s
+genericTimeDurationMinutes,min
+genericTimeDurationHours,h
+genericTimeDurationDays,j
+genericTimeDurationMinutesLong,min
+genericTimeDurationHoursLong,heures
+genericTimeDurationDaysLong,jours
+genericLoadingText,Chargement en cours
+genericListLoadingNextItems,Chargement des deals en cours…
+genericListEmpty,Aucun deal n'est disponible !
+genericListError,Une erreur est survenue lors du chargement des deals.
+genericListRetry,Ré-essayer
+homePageScreenTitle,Au départ de
+homePageAppBarSearchHint,"Destination, région ou type de voyage"
+homePageAppBarDefaultLocation,Votre position
+homePageListReadMore,Tout voir
+homePageErrorMessage,Une erreur est survenue lors du chargement des deals.
+homePageErrorButton,Ré-essayer
+homePageEmpty,Aucun deal n'est disponible pour cette destination.
+subscribeToNotificationsButtonInitial,Rester informé des nouveaux deals
+subscribeToNotificationsButtonLoading,Enregistrement en cours
+subscribeToNotificationsButtonSuccess,Abonné aux deals !
+subscribeToNotificationsButtonError,Une erreur est survenue. Cliquez pour réessayer.
+appBarDetailsSubtitle,Plage de dates
+buttonCreateAlert,Créez une alerte
+titleBestDeal,Meilleure date disponible
+titleCalendar,Calendrier des deals
+buttonOpenDetails,Voir les détails
+buttonListFlights,Voir les vols
+titleOutwardFlight,Vol aller - %date$s
+titleReturnFlight,Vol retour - %date$s
+textCompanyName,Opéré par %company$s
+textStopDuration,Escale de %duration$s
+rangePickerScreenTitle,Choisissez vos dates
+rangePickerTitleDuration,Durée du voyage (jours)
+rangePickerButtonNoDuration,Indifférent
+rangePickerButtonUpToThreeDays,0-3 jours
+rangePickerButtonUpToFiveDays,3-5 jours
+rangePickerButtonUpToNineDays,6-9 jours
+rangePickerButtonUpToFourteenDays,10-14 jours
+rangePickerTitleCalendar,Calendrier des prix
+rangePickerTabButtonDeparture,Départ
+rangePickerTabButtonOutward,Retour
+rangePickerButtonSave,Sélectionner les dates
+filtersScreenTitle,Filtres
+filtersButtonCloseTooltip,Fermer
+filtersMenuDeleteFilters,Effacer
+filtersButtonEdit,Editer
+filtersButtonCreate,Valider
+filtersButtonApply,Appliquer
+filtersItemDates,Dates de voyage
+filtersItemStopOvers,Escales
+filtersItemFlightDuration,Durée de vol
+filtersItemFlightDurationSubtitle,%startDuration$d - %endDuration$d H
+filtersItemFlightDurationMinValue,filtersItemFlightDurationMinValue
+filtersItemFlightDurationMaxValue,24
+filtersItemBudget,Budget
+filtersItemBudgetSubtitle,%startBudget$d - %endBudget$d €
+filtersItemBudgetMinValue,0
+filtersItemBudgetMaxValue,1000
+filtersStopsItemStopOversNone,Direct
+filtersStopsItemStopOversOne,1 Escale
+filtersStopsItemStopOversMultiple,2 Escales ou +
+alertsListScreenTitle,Alertes
+alertsListError,Une erreur est survenue lors du chargement de vos notifications et alertes.
+alertsListTabNotifications,Notifications
+alertsListTabManage,Gérer mes alertes
+alertsListNotificationsEmpty,0 notification
+alertsListNotificationsErrorMessage,Une erreur est survenue lors du chargement de vos notifications.
+alertsListNotificationsErrorButton,Ré-essayer
+alertsListNotificationsItemCities,%departureCity$s - %arrivalCity$s
+alertsListNotificationsItemJourney,%departureDate$s - %arrivalDate$s
+alertsListNotificationsItemNotificationDate,Il y a %date$s
+alertsListNotificationsItemNotificationDateRange,%startDate$s - %endDate$s
+alertsListNotificationsItemNotificationDateRangeFlexible,Du %startDate$s au %endDate$s
+alertsListNotificationsItemNotificationDateUnknown,?
+alertsListNotificationsItemButtonDeleteTooltip,Supprimer la notification
+alertsListManageEmpty,0 alerte
+alertsListManageErrorMessage,Une erreur est survenue lors du chargement de vos notifications.
+alertsListManageErrorButton,Ré-essayer
+alertsListManageItemButtonDeleteTooltip,Supprimer l'alerte
+alertsListManageItemButtonEditTooltip,Modifier les filtres
+alertsListManageItemSingleNotification,1 nouveau deal
+alertsListManageItemMultipleNotifications,%count$d nouveaux deals
+alertsListManageItemUpdateLoading,Mise à jour en cours
+alertsListManageItemUpdateErrorDialogTitle,Mise à jour de l'alerte
+alertsListManageItemUpdateErrorDialogMessage,La mise à jour de l'alerte avec les nouveaux filtres a échoué.\n\nMerci de ré-essayer ultérieurement.
+alertsListManageItemDeleteLoading,Suppression en cours
+alertsListManageItemDeleteErrorDialogTitle,Suppression de l'alerte
+alertsListManageItemDeleteErrorDialogMessage,Une erreur est survenue lors de la suppression de votre alerte.\n\nMerci de ré-essayer ultérieurement.
+alertsListManageItemNoFilter,Aucun filtre
+travelDatesScreenTitle,Dates de voyage
+travelDatesTabFlexible,Dates flexibles
+travelDatesFlexibleRange,Plage de dates
+travelDatesFlexibleRangeSubtitle,%startDate$s - %endDate$s
+travelDatesFlexibleTripDuration,Durée de séjour
+travelDatesFlexibleTripDurationWeekEnd,Week-end
+travelDatesFlexibleTripDurationSubtitle,%minLength$d - %maxLength$d jours
+travelDatesFlexibleTripDurationSubtitleMax,%minLength$d - %maxLength$d jours+
+travelDatesTabFixed,Dates fixes
+travelDatesTabFixedSubtitle,%fromDate$s au %toDate$s
+travelDatesTabDeparture,Départ
+travelDatesTabOutward,Retour
+travelDatesButtonValidate,Valider
+travelDatesButtonFlexible,+/- 3 j
+locationPickerLabelFrom,Au départ de
+locationPickerLabelTo,A destination de
+locationPickerItemCity,%cityName$s (%countryCode$s) - Tous les aéroports
+locationPickerItemAirport,%airportCode$s - %airportName$s
+locationPickerNoResult,Aucun résultat
+locationPickerErrorLabel,Une erreur est survenue lors du chargement des suggestions.
+locationPickerErrorButton,Ré-essayer
+locationPickerSearchFieldHintFrom,Sélectionner une ville ou un aéroport
+locationPickerSearchFieldHintTo,"Sélectionner une ville, un pays, continent…"
+walkthroughStep1Line1,Trouve les meilleurs deals de vols
+walkthroughStep1Line2,Mowgli identifie les meilleurs deals pour toi parmi 8 milliards d’offres chaque jour !
+walkthroughStep1PositiveButton,Continuer
+walkthroughStep2Line1,Ne manque plus aucun deal
+walkthroughStep2Line2,Arrête de passer des heures à surveiller les meilleurs prix et laisse faire Mowgli
+walkthroughStep2PositiveButton,Alerte-moi
+walkthroughStep2NegativeButton,Peut-être plus\u00A0tard
+destinationViewerErrorMessage,Une erreur est survenue lors du chargement des deals.
+destinationViewerErrorButton,Ré-essayer
+destinationViewerEmpty,Aucun deal n'est disponible pour cette destination.
+detailsScreenTitle,%departure$s - %arrival$s
+detailsTipsTitle,Les conseils de Mowgli
+detailsTipsBadgeSuperDeal,Super deal
+detailsHopStopOversSingle,"1 escale, "
+detailsHopStopOversMultiple,"%count$d escales, "
+detailsHopStopOversItem,"%destinationCode$s, %duration$s"
+detailsHopStopOversItemSeparator,\n
+detailsShareDeal,Je viens de trouver un super deal pour %destination$s à seulement %price$s euros grâce à Mowgli. Profites-en maintenant !\nTélécharge l’application sur IOS : %iosLink$s\nou sur Android : https://play.google.com/store/apps/details?id=%packageName$s
+detailsButtonCalendar,Calendrier des deals
+priceCalendarScreenTitle,Calendrier des deals
+priceCalendarFlightDurationTitle,Durée du voyage
+priceCalendarFlightDurationValue,%minLength$d - %maxLength$d jours
+priceCalendarFlightDurationValueMax,%minLength$d - %maxLength$d jours+
+priceCalendarTabDeparture,Départ
+priceCalendarTabArrival,Retour
+priceCalendarButtonConfirm,Sélectionner les dates
+priceCalendarErrorMessage,Le chargement des prix a échoué.
+priceCalendarErrorButton,Ré-essayer
+dealDetailsNotificationsMessage,Ne manque plus aucun deal\nsur %destination$s
+dealDetailsNotificationsButtonEnable,Créez une alerte personnalisée
+dealDetailsNotificationsButtonLater,Peut-être plus tard
+dealDetailsMainOfferTitle,Meilleur deal
+dealDetailsOfferButtonCheckAvailability,Valider la disponiblité
+dealDetailsOfferButtonCheckAvailabilityDialogTitle,C'est pour bientôt !
+dealDetailsOfferButtonCheckAvailabilityDialogMessage,"La réservation n’est pas disponible pour le moment, mais nous travaillons dur pour la rendre disponible très prochainement."
+dealDetailsErrorLabel,Une erreur est survenue lors du chargement des données du deal.
+dealDetailsErrorButton,Ré-essayer
+dealDetailsAppBarTitle,%departureCity$s - %arrivalCity$s
+dealDetailsAppBarTitleEmpty,Détails du deal
+createAlertScreenTitle,Hey Mowgli 👋
+createAlertScreenSubtitle,Alerte-moi des nouveaux deals  sur %departure$s - %arrival$s
+createAlertItemDates,Dates de voyages
+createAlertItemDatesEmptyValue,Toutes dates de voyage
+createAlertItemStopOvers,Escales
+createAlertItemStopOversEmptyValue,Indifférent
+createAlertItemFlightDuration,Durée de vol
+createAlertItemFlightDurationEmptyValue,Indifférent
+createAlertItemBudget,Budget
+createAlertItemBudgetEmptyValue,Indifférent
+createAlertButtonCreate,Créer une alerte
+calendarDay1,Lundi
+calendarDay2,Mardi
+calendarDay3,Mercredi
+calendarDay4,Jeudi
+calendarDay5,Vendredi
+calendarDay6,Samedi
+calendarDay7,Dimanche
+dealAvailableScreenMain,Trop cooooool ! \nLe prix est encore dispo
+dealAvailableScreenPricePerTraveler,Prix par voyageur
+dealAvailableScreenBook,Réservez
+dealAvailableScreenAlternatives,Les alternatives
+dealAvailableScreenAlternativesDirectOne,Prenez un vol direct pour
+dealAvailableScreenAlternativesDirectTwo, %price$d€ de plus
+dealAvailableScreenAlternativesHoursOne,D’autres horaires disponibles pour\n
+dealAvailableScreenAlternativesHoursTwo,%price$d€ de plus
+dealNotAvailableScreenMain,Trop tard\nLe prix a évolué !
+dealNotAvailableScreenDealInfosOne,Ce tarif observé il y a %duration$d %durationType$s n’est plus disponible.\nLes compagnies aériennes font varier leur tarifs en permanence
+dealNotAvailableScreenDealInfosTwo,Mowgli va t’aider à être certain d’obtenir \nle meilleur deal en te notifiant 
+dealNotAvailableScreenEnableNotifications,Activer les notifications
+dealNotAvailableScreenBestOffer,Meilleure offre disponible
+directAlternativesScreenMain,Les vols directs à partir de %price$d€
+hoursAlternativesScreenMain,Les horaires à partir de %price$d€
+tripDetailsScreenOutbound,Vol aller vers %city$s
+tripDetailsScreenInbound,Vol retour vers %city$s
+tripDetailsScreenStopOver,Ecale de %hours$dh%minutes$dmin
+tripDetailsScreenContinue,Continuer
+tripDetailsScreenOperatedBy,Opéré par %company$s
+travelersCounterScreenTitle,Choix des voyageurs
+travelersCounterScreenInfantAge, (2-12 ans)
+travelersCounterScreenBabyAge, (0-2 ans)
+travelersCounterScreenConfirm,Confirmer
+addOptionsScreenTitle,Ajouter des options
+addOptionsScreenAddLuggage,Ajouter des bagages
+addOptionsScreenLuggagePerTraveler,Bagage(s) voyageur %travelerNb$d
+addOptionsScreenLuggagePerTravelerSub,23kg en soute pour %bagagePrice$d€
+addOptionsScreenTotal,Total :
+addOptionsScreenSummary,%nbTravelers$d voyageur - %totalLuggages$d bagages
+addOptionsScreenContinue,Continuer
+priceDetailsScreenTitle,Les conditions du tarif
+priceDetailsScreenCabinSummary,Vol en classe %cabinClass$s
+priceDetailsScreenChoiceSummaryOne,Bon choix !
+priceDetailsScreenChoiceSummaryTwo,ci-dessous les détails
+priceDetailsScreenChoiceSummaryThree,concernant ta sélection
+priceDetailsScreenSeat,Selection du siège
+priceDetailsScreenSeatChoice,Choisir
+priceDetailsScreenCabinLuggageSummary,Bagage cabine
+priceDetailsScreenLuggageSummary,Bagage(s) en soute
+priceDetailsScreenLuggageSummaryPrice,Bagage n°%luggageNb$d : %luggagePrice$d€
+priceDetailsScreenModification,Modifications
+priceDetailsScreenModificationPrice,"%modificationPriceInt$d,%modificationPriceDecimal$d€"
+priceDetailsScreenCancelation,Annulations
+priceDetailsScreenCancelationConditions,Sous conditions
+priceDetailsScreenTip,Inclure un pourboire de 3€
+priceDetailsScreenTipDescription,"Aide Mowgli avec cette gratification facultative, à trouver les meilleurs deals pour toi"
+priceDetailsScreenTotal,Total :
+priceDetailsScreenContinue,Continuer
+chooseTravelersScreenTitle,Informations voyageurs
+chooseTravelersScreenTravelerNumber,Voyageur %travelerNb$d -
+chooseTravelersScreenTravelerType,%travelerType$s
+tripCardShowDetails,Afficher les détails
+luggagesNumberCount,x%luggagesNumber$d
+travelerTypeAdult,Adulte
+travelerTypeInfant,Enfant
+travelerTypeBaby,Bébé
+newTravelerScreenWarningOne,Les corrections de noms ne sont pas autorisées après la réservation.
+newTravelerScreenWarningTwo,Vérifie bien que toutes les informations correspondent à celles des documents de voyage !
+newTravelerScreenRequiredInfosTitle,Informations requises
+newTravelerScreenLastName,Nom
+newTravelerScreenFirstName,Prénom
+newTravelerScreenSecondName,Deuxième prénom
+newTravelerScreenBirthdate,Date de naissance
+newTravelerScreenFirstGender,Sexe
+newTravelerScreenNationality,Nationalité
+newTravelerScreenPassportNumber,Numéro de passeport
+newTravelerScreenExpirationDate,Date d'expiration
+newTravelerScreenAdditionalInfosTitle,Informations complémentaires
+newTravelerScreenNeedAssistance,Besoin d'une assistance
+newTravelerScreenPhoneNumber,Numéro de téléphone
+newTravelerScreenEmail,Email
+newTravelerScreenEmailConfirmation,Confirmation email
+newTravelerScreenValidate,Valider
+newTravelerScreenErrorName,Ecrivez votre nom sans accent et sans tiret
+newTravelerScreenErrorPassportNumber,Ecrivez le numéro tel qu’il apparait sur votre passeport
+newTravelerScreenErrorWrongEmail,L’adresse e-mail renseignée n’est pas correcte
+newTravelerScreenErrorDifferentEmails,les adresses e-mails renseignées ne correspondent pas
+travelersSummaryScreenSelectPayment,Selectionner un moyen de paiement
+travelersSummaryScreenAdult,Adulte(s)
+travelersSummaryScreenInfant,Enfants(s)
+travelersSummaryScreenBaby,Bébé(s)
+selectPaymentScreenAddCard,Ajouter une carte
+selectPaymentScreenNameType,%travelerName$s : 1 %travelerType$s
+selectPaymentScreenCardTypeNumber,%cardType$s N° %hiddenCardNumber$s
+selectPaymentScreenBasePrice,Tarif de base
+selectPaymentScreenTaxes,Taxes et frais
+selectPaymentScreenTotal,Total :
+selectPaymentScreenOneWaySummary,%nbOneWay$dx aller
+selectPaymentScreenRoundTripSummary,%nbRoundTrip$dx aller-retour
+selectPaymentScreenNonRefundable,non-remboursable
+selectPaymentScreenRefundable,remboursable
+selectPaymentScreenPay,Payer
+selectPaymentScreenGooglePay,Google Pay
+selectPaymentScreenApplePay,Apple Pay
+creditCardTypeVisa,Visa
+creditCardTypeVisaElectron,Visa Electron
+creditCardTypeMastercard,Mastercard
+creditCardTypeAmericanExpress,American Express
+newPaymentScreenCardType,Type de carte
+newPaymentScreenCardNumber,Numéro de la carte bancaire
+newPaymentScreenCardNumberHintText,XXXX XXXX XXXX XXXX
+newPaymentScreenCardHolderName,Titulaire de la carte
+newPaymentScreenCardExpirationDate,Date d’expiration
+newPaymentScreenCardExpirationDateHintText,XX/XX
+newPaymentScreenCardSecurityCode,Code de sécurité
+newPaymentScreenCardSecurityCodeHintText,XXX
